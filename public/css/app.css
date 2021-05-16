@@ -7753,7 +7753,7 @@ button.bg-dark:focus {
 
 .pb-4,
 .py-4 {
-  padding-bottom: 1.5rem !important;
+  padding-bottom: 1.5rem;
 }
 
 .pl-4,
