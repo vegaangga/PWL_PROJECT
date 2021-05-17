@@ -19,37 +19,40 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('siswa.store') }}" id="myForm">
+                <form method="POST" action="{{ route('siswa.update', $siswa->nisn) }}" id="myForm" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
-                        <label for="Nim">Nim</label>
+                        <label for="Nim">Nisn</label>
                         <br>
-                        <input type="text" name="nim" class="form-control" id="Nim" aria-describedby="Nim" >
+                        {{-- $anggota = Anggota::where('nis', $nis)->first();
+                        @php $a = Auth::user()->nisn --}}
+                        <input type="text" name="nisn" class="form-control" id="Nim" aria-describedby="Nim" value="{{ $siswa->nisn }}">
                     </div>
                     <div class="form-group">
                         <label for="Nama">Nama</label>
                         <br>
-                        <input type="Nama" name="nama" class="form-control" id="Nama" aria-describedby="Nama" >
+                        <input type="Nama" name="nama" class="form-control" id="Nama" aria-describedby="Nama" value="{{ $siswa->nama }}" >
                     </div>
                     <div class="form-group">
-                        <label for="Jurusan">Jurusan</label>
+                        <label for="jk">Jenis Kelamin</label>
                         <br>
-                        <input type="Jurusan" name="jurusan" class="form-control" id="Jurusan" aria-describedby="Jurusan" >
+                        <input type="jenis_kelamin" name="jenis_kelamin" class="form-control" id="jenis_kelamin" aria-describedby="jenis_kelamin"  value="{{ $siswa->jenis_kelamin }}">
                     </div>
                     <div class="form-group">
-                        <label for="No_Handphone">No_Handphone</label>
+                        <label for="No_Handphone">No Handphone</label>
                         <br>
-                        <input type="No_Handphone" name="no_handphone" class="form-control" id="No_Handphone" aria-describedby="No_Handphone" >
+                        <input type="No_Handphone" name="no_handphone" class="form-control" id="No_Handphone" aria-describedby="No_Handphone" value="{{ $siswa->no_handphone }}">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <br>
-                        <input type="email" name="email" class="form-control" id="email" aria-describedby="email" >
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="email" value="{{ $siswa->email }}" >
                     </div>
                     <div class="form-group">
                         <label for="tgl_lahir">Tanggal Lahir</label>
                         <br>
-                        <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir" aria-describedby="tgl_lahir" >
+                        <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir" aria-describedby="tgl_lahir" value="{{ $siswa->tgl_lahir }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

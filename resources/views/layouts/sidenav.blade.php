@@ -36,8 +36,17 @@
         <div id="siswa" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{route('siswa.profile')}}">Profile</a>
-                <a class="collapse-item" href="{{route('siswa.formulir')}}">Formulir</a>
-                <a class="collapse-item" href="{{route('siswa.cetak')}}">Cetak Berkas</a>
+                @php
+                $a = Auth::user()->nisn;
+                $b = App\Models\Siswa::where('nisn', $a)->first();
+                @endphp
+                @if($b == null)
+                    <a class="collapse-item" href="{{route('siswa.create')}}">Formulir</a>
+                @endif
+                @if($b != null)
+                <a class="collapse-item" href="{{route('siswa.show',Auth::user()->nisn)}}">Data</a>
+                @endif
+                {{-- <a class="collapse-item" href="{{route('siswa.cetak')}}">Cetak Berkas</a> --}}
             </div>
         </div>
     </li>

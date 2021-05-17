@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Buku;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +26,8 @@ class SiswaController extends Controller
      */
     public function create()
     {
-
+        $user = Auth::user();
+        return view('siswa.create',['user' =>$user]);
     }
 
     /**
@@ -38,21 +39,20 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'nim'=>'required',
-        'nama'=>'required',
-        'jurusan'=>'required',
-        'no_handphone'=>'required',
-        'email'=>'required',
-        'tgl_lahir'=>'required'
-        ]);
-        //fungsieloquentuntukmenambahdata
-        //Mahasiswa::create($request->all());
-        //jikadataberhasilditambahkan,akankembalikehalamanutama
-        //return redirect()->route('mahasiswa.index')->with('success','Mahasiswa Berhasil Ditambahkan');
+            'nisn'=>'required',
+            'nama'=>'required',
+            'jenis_kelamin'=>'required',
+            'no_handphone'=>'required',
+            'email'=>'required',
+            'tgl_lahir'=>'required'
+            ]);
+            //fungsieloquentuntukmenambahdata
+            Siswa::create($request->all());
+            //jikadataberhasilditambahkan,akankembalikehalamanutama
+            //return redirect()->route('mahasiswa.index')->with('success','Mahasiswa Berhasil Ditambahkan');
 
-        return redirect()->route('mahasiswa.index')
-        ->with('success','Mahasiswa Berhasil Ditambahkan');
-
+            return redirect()->route('siswa.formulir')
+            ->with('success','Data Berhasil Dikirim');
     }
 
     /**
@@ -61,9 +61,10 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($nisn)
     {
-
+        $siswa = Siswa::where('nisn', $nisn)->first();
+        return view('siswa.show', compact('siswa'));
     }
 
     /**
@@ -74,7 +75,8 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-
+        $siswa = Siswa::find($id);
+        return view('siswa.ubah', compact('siswa'));
     }
 
     /**
@@ -84,9 +86,24 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $nisn)
     {
+        $request->validate([
+            'nama'=>'required',
+            'tgl_lahir'=>'required',
+            'jenis_kelamin'=>'required',
+            'no_handphone'=>'required'
+            ]);
 
+        //fungsieloquentuntukmenambahdata
+        Siswa::find($nisn)->update($request->all());
+        //jikadataberhasilditambahkan,akankembalikehalamanutama
+        $siswa = Siswa::where('nisn', $nisn)->first();
+        // return view('siswa.show', compact('siswa'));
+        // return redirect()->route('siswa.show', compact('siswa'))->with('success','Siswa Berhasil Diupdate');
+        return redirect('siswa/'.$nisn,)->with('success','Data Berhasil Diupdate');
+
+        // return redirect('siswa/'.$nisn)->with();
     }
 
     /**
@@ -97,7 +114,7 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-
+        //
     }
 
     public function profile()
@@ -106,9 +123,28 @@ class SiswaController extends Controller
         return view('siswa.profile',['user' =>$user]);
     }
 
-    public function formulir()
+    // public function formulir()
+    // {
+    //     $user = Auth::user();
+    //     return view('siswa.create',['user' =>$user]);
+    // }
+
+    // public function cetak($nisn){
+    //     $siswa = Siswa::where('nisn', $nisn)->first();
+    //     return view('siswa.cetak_pdf',compact('posts'))->with('i',(request()->input('posts',1)-1)*5);
+    // }
+
+    public function cetak($nisn)
     {
-        $user = Auth::user();
-        return view('siswa.formulir',['user' =>$user]);
+        $siswa = Siswa::where('nisn', $nisn)->first();
+        return view('siswa.cetak_pdf', compact('siswa'));
     }
+
+    // public function cetak_transaksi(){
+    //     $posts = Siswa::all();
+
+    //     $pdf = PDF::loadView('admin.laporan.transaksi_pdf',['posts'=>$posts]);
+
+    //     return $pdf->stream();
+    // }
 }

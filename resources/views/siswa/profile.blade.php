@@ -15,12 +15,17 @@
                 </div>
                 @endif
                 {{ __('You are logged in!') }}
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <table class="table table-responsive">
-                    <tr>
-                        <th>Username</th>
-                        <th>:</th>
-                        <td>{{ $user -> username}}</td>
-                    </tr>
                     <tr>
                         <th>Name</th>
                         <th>:</th>
