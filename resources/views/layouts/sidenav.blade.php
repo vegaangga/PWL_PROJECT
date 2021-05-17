@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('siswa.index')}}">
         <div class="sidebar-brand-icon ">
             <img src="{{asset('homepage/img/logocastle.png')}}" style="width: 50px">
         </div>
@@ -17,7 +17,8 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Home</span></a>
     </li>
-
+    @php $a = Auth::user()->role_id ; @endphp
+    @if($a == 1)
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -34,20 +35,17 @@
         </a>
         <div id="siswa" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Login Screens:</h6>
-                <a class="collapse-item" href="login.html">Login</a>
-                <a class="collapse-item" href="register.html">Register</a>
-                <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                <div class="collapse-divider"></div>
-                <h6 class="collapse-header">Other Pages:</h6>
-                <a class="collapse-item" href="404.html">404 Page</a>
-                <a class="collapse-item" href="blank.html">Blank Page</a>
+                <a class="collapse-item" href="{{route('siswa.profile')}}">Profile</a>
+                <a class="collapse-item" href="{{route('siswa.formulir')}}">Formulir</a>
+                <a class="collapse-item" href="{{route('siswa.cetak')}}">Cetak Berkas</a>
             </div>
         </div>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
+    @endif
 
+    @if($a == 0)
     <!-- Heading -->
     <div class="sidebar-heading">
         Admin
@@ -61,32 +59,16 @@
         </a>
         <div id="admin" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Login Screens:</h6>
-                <a class="collapse-item" href="login.html">Login</a>
-                <a class="collapse-item" href="register.html">Register</a>
-                <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                <a class="collapse-item" href="login.html">Data Calon Siswa</a>
+                <a class="collapse-item" href="register.html">Data User Terdaftar</a>
+                <a class="collapse-item" href="forgot-password.html">Data Admin</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
-                <a class="collapse-item" href="404.html">404 Page</a>
-                <a class="collapse-item" href="blank.html">Blank Page</a>
+                <a class="collapse-item" href="404.html">Cetak Data</a>
             </div>
         </div>
     </li>
-
-    <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Cetak</span></a>
-    </li>
-
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
-    </li>
-
+    @endif
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
