@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use PDF;
 class SiswaController extends Controller
 {
     /**
@@ -134,11 +134,14 @@ class SiswaController extends Controller
     //     return view('siswa.cetak_pdf',compact('posts'))->with('i',(request()->input('posts',1)-1)*5);
     // }
 
-    public function cetak($nisn)
-    {
-        $siswa = Siswa::where('nisn', $nisn)->first();
-        return view('siswa.cetak_pdf', compact('siswa'));
-    }
+    // public function cetak($nisn)
+    // {
+    //     $siswa = Siswa::where('nisn', $nisn)->first();
+
+    //     $pdf = PDF::loadView('siswa.cetak_pdf',['siswa'=>$siswa]);
+    //     // return view('siswa.cetak_pdf', compact('siswa'));
+    //     return $pdf->stream();
+    // }
 
     // public function cetak_transaksi(){
     //     $posts = Siswa::all();
@@ -147,4 +150,19 @@ class SiswaController extends Controller
 
     //     return $pdf->stream();
     // }
+
+    // public function cetak($nisn){
+    //     $siswa = Siswa::find($nisn);
+    //     $pdf = PDF::loadview('siswa.cetak_pdf', compact('siswa'));
+    //     return $pdf->stream();
+
+    //     //return view('siswa.cetak_pdf', compact('siswa'));
+    // }
+
+    public function cetak($nisn) {
+        $siswa = Siswa::findOrFail($nisn);
+        $pdf = PDF::loadView('siswa.cetak_pdf', compact('siswa'))->save('siswa.pdf');
+        //return $pdf->stream('siswa.pdf');
+        return view('siswa.cetak_pdf', compact('siswa'));
+    }
 }

@@ -28,7 +28,9 @@ Route::prefix('siswa')->group(function () {
     Route::get('/', [SiswaController::class,'index'])->name('siswa.index');
     Route::get('/profile', [SiswaController::class,'profile'])->name('siswa.profile');
     Route::get('/formulir', [SiswaController::class,'formulir'])->name('siswa.formulir');
-    Route::get('/{siswa}/cetak', [SiswaController::class,'cetak'])->name('siswa.cetak');
+    Route::get('/cetak/{siswa}', [SiswaController::class,'cetak'])->name('siswa.cetak');
 });
 
 Route::resource('siswa', SiswaController::class);
+
+//Route::get('mahasiswa/cetak_pdf/{nim}', [MahasiswaController::class, 'cetak_pdf'])->name('mahasiswa.cetak_pdf');
