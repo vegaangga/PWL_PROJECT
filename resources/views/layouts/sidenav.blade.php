@@ -43,6 +43,7 @@
                 @if($b == null)
                     <a class="collapse-item" href="{{route('siswa.create')}}">Formulir</a>
                 @endif
+                <a class="collapse-item" href="{{route('siswa.index')}}">Step</a>
                 @if($b != null)
                 <a class="collapse-item" href="{{route('siswa.show',Auth::user()->nisn)}}">Data</a>
                 @endif

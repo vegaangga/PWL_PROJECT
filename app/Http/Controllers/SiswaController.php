@@ -17,6 +17,9 @@ class SiswaController extends Controller
     {
         $user = Auth::user();
         return view('siswa.index',['user' =>$user]);
+        // return view('siswa.step',['user' =>$user]);
+
+
     }
 
     /**
@@ -151,18 +154,18 @@ class SiswaController extends Controller
     //     return $pdf->stream();
     // }
 
-    // public function cetak($nisn){
-    //     $siswa = Siswa::find($nisn);
-    //     $pdf = PDF::loadview('siswa.cetak_pdf', compact('siswa'));
-    //     return $pdf->stream();
+    public function cetak($nisn){
+        $siswa = Siswa::find($nisn);
+        $pdf = PDF::loadview('siswa.cetak_pdf', compact('siswa'));
+        //return $pdf->stream();
 
-    //     //return view('siswa.cetak_pdf', compact('siswa'));
-    // }
-
-    public function cetak($nisn) {
-        $siswa = Siswa::findOrFail($nisn);
-        $pdf = PDF::loadView('siswa.cetak_pdf', compact('siswa'))->save('siswa.pdf');
-        //return $pdf->stream('siswa.pdf');
         return view('siswa.cetak_pdf', compact('siswa'));
     }
+
+    // public function cetak($nisn) {
+    //     $siswa = Siswa::findOrFail($nisn);
+    //     $pdf = PDF::loadView('siswa.cetak_pdf', compact('siswa'))->save('siswa.pdf');
+    //     //return $pdf->stream('siswa.pdf');
+    //     return view('siswa.cetak_pdf', compact('siswa'));
+    // }
 }

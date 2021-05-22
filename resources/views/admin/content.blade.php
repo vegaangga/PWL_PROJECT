@@ -193,8 +193,40 @@
 
                  </div>
              </div>
+        </div>
      </div>
 
+     <div class="row">
+        <div class="col-lg-12 mb-4">
+            <!-- Approach -->
+             <div class="card shadow mb-4">
+                 <div class="card-header py-3">
+                     <h6 class="m-0 font-weight-bold text-primary">{{ __('You are logged in!') }}</h6>
+                 </div>
+                 <div class="card-body">
+                     @if (session('status'))
+                     <div class="alert alert-success" role="alert">
+                         {{ session('status') }}
+                     </div>
+                     @endif
+                     Selamat datang di sistem informasi Penerimaan Peserta Didik Baru (PPDB) Online
+                                              <br>SMA NEGERI 1 PURI
+                                              <br><br>
+                                              
+                    <div class="btn-group mb-15">
+                        <button type="button" class="btn btn-light">1</button>
+                        <button type="button" class="btn btn-light">2</button>
+                        <button type="button" class="btn btn-success ">3</button>
+                        <button type="button" class="btn btn-light">4</button>
+                    </div>
+                 </div>
+             </div>
+        </div>
      </div>
+
     @endif
+    {{-- <script src="{{asset('template\js\jquery-steps\jquery.steps.js')}}"></script>
+    <script src="{{asset('template\vendor\steps-setting.js')}}"></script> --}}
+
 @endsection
+

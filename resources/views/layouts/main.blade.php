@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    {{-- plugins steps-setting --}}
+    {{-- <link rel="stylesheet" type="text/css" href="{{asset('template/plugins/jquery-steps/jquery.steps.css')}}"> --}}
 </head>
 
 <body id="page-top">
