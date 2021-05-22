@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,11 @@ Route::prefix('siswa')->group(function () {
 Route::resource('siswa', SiswaController::class);
 
 //Route::get('mahasiswa/cetak_pdf/{nim}', [MahasiswaController::class, 'cetak_pdf'])->name('mahasiswa.cetak_pdf');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/data-siswa', [HomeController::class,'datasiswa'])->name('admin.datasiswa');
+    Route::get('/data-ortu', [HomeController::class,'dataortu'])->name('admin.dataortu');
+    Route::get('/biaya-daftar', [HomeController::class,'biayadaftar'])->name('admin.biayadaftar');
+    Route::get('/daftar-ulang', [HomeController::class,'daftarulang'])->name('admin.daftarulang');
+    Route::get('/cetak', [HomeController::class,'cetak'])->name('cetak');
+});
