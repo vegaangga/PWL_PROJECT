@@ -38,7 +38,7 @@ body {font-family: "Lato", sans-serif}
     <div class="w3-dropdown-hover w3-hide-small w3-right">
       <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="{{ route('login') }}" class="w3-bar-item w3-button">Register</a>
+        <a href="{{ route('login') }}" class="w3-bar-item w3-button">Login</a>
 
       </div>
     </div>
