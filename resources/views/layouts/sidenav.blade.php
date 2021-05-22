@@ -69,7 +69,10 @@
         </a>
         <div id="admin" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="login.html">Data Calon Siswa</a>
+                <a class="collapse-item" href="{{url('/biayadaftar')}}">Biaya Daftar</a>
+                <a class="collapse-item" href="login.html">Data Pribadi Siswa</a>
+                <a class="collapse-item" href="register.html">Data Orangtua</a>
+                <a class="collapse-item" href="login.html">Daftar Ulang</a>
                 <a class="collapse-item" href="register.html">Data User Terdaftar</a>
                 <a class="collapse-item" href="forgot-password.html">Data Admin</a>
                 <div class="collapse-divider"></div>
