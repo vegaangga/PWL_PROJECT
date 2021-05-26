@@ -164,7 +164,8 @@ return [
 
         //Menambah Package PDF
         Barryvdh\DomPDF\ServiceProvider::class,
-
+        //SweetAlert
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -233,6 +234,10 @@ return [
 
         //Package pdf
         'PDF' => Barryvdh\DomPDF\Facade::class,
+
+        //sweetalert
+        //SweetAlert
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
     ],
 
