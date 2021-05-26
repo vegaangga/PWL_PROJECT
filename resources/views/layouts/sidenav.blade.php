@@ -28,28 +28,29 @@
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#siswa"
+        <a class="nav-link collapsed" href="{{route('siswa.profile')}}"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Data</span>
+            <span>Profile User</span>
         </a>
-        <div id="siswa" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{route('siswa.profile')}}">Profile</a>
-                @php
-                $a = Auth::user()->nisn;
-                $b = App\Models\Siswa::where('nisn', $a)->first();
-                @endphp
-                @if($b == null)
-                    <a class="collapse-item" href="{{route('siswa.create')}}">Formulir</a>
-                @endif
-                <a class="collapse-item" href="{{route('siswa.index')}}">Step</a>
-                @if($b != null)
-                <a class="collapse-item" href="{{route('siswa.show',Auth::user()->nisn)}}">Data</a>
-                @endif
-                {{-- <a class="collapse-item" href="{{route('siswa.cetak')}}">Cetak Berkas</a> --}}
-            </div>
-        </div>
+        @php
+        $a = Auth::user()->nisn;
+        $b = App\Models\Siswa::where('nisn', $a)->first();
+        @endphp
+        @if($b == null)
+        <a class="nav-link collapsed" href="{{route('siswa.create')}}"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Formulir</span>
+        </a>
+        @endif
+        @if($b != null)
+        <a class="nav-link collapsed" href="{{route('siswa.show',Auth::user()->nisn)}}"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Data Tersimpan</span>
+        </a>
+        @endif
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -62,22 +63,31 @@
     </div>
 
     <li class="nav-item">
+
+        <a class="nav-link collapsed" href="#" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Data Pendaftaran</span>
+        </a>
+        <a class="nav-link collapsed" href="#" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Data Pribadi Calon Siswa</span>
+        </a>
+        <a class="nav-link collapsed" href="#" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Data Daftar Ulang</span>
+        </a>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#admin"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Data</span>
+            <span>Data Master</span>
         </a>
         <div id="admin" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{url('/biayadaftar')}}">Biaya Daftar</a>
-                <a class="collapse-item" href="login.html">Data Pribadi Siswa</a>
-                <a class="collapse-item" href="register.html">Data Orangtua</a>
-                <a class="collapse-item" href="login.html">Daftar Ulang</a>
                 <a class="collapse-item" href="register.html">Data User Terdaftar</a>
                 <a class="collapse-item" href="forgot-password.html">Data Admin</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
-                <a class="collapse-item" href="404.html">Cetak Data</a>
+                <a class="collapse-item" href="#">Cetak Data</a>
             </div>
         </div>
     </li>
