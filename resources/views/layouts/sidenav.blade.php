@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="/">
+        <a class="nav-link" href="/home">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Home</span></a>
     </li>
@@ -67,7 +67,7 @@
 
     <li class="nav-item">
 
-        <a class="nav-link collapsed" href="#" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="{{url('/biaya-daftar')}}" aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Pendaftaran</span>
         </a>

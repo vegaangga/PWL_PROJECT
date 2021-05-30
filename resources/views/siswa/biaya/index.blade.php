@@ -4,10 +4,7 @@
 <div class="row">
    <div class="col-lg-12 mb-4">
        <!-- Approach -->
-       @foreach($datas as $data)
-       @if ($data->status == 'sudah')
         <div class="card shadow mb-4">
-
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Upload Struk Daftar</h6>
             </div>
@@ -26,7 +23,7 @@
                     Upload Struk Pembayaran
                 </a>
                 @endif
-
+                @foreach($datas as $data)
                 <table class="data-table table nowrap">
                     <thead>
                         <tr>
@@ -38,7 +35,7 @@
                     </thead>
                     <tbody id="myTable">
 
-
+                        @if ($data->status == 'sudah')
                         <p>Tunggu Admin Mengkonfirmasi Struk Anda </p>
 
                         <tr>
@@ -55,67 +52,19 @@
                             </td>
                         </tr>
                         @endif
-                        @if ($data->status == 'sudah')
+                        @if ($data->status == 'belum')
                         <a href="{{ route('siswa.create') }}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
                             <i class="icon-copy fa fa-user-plus" aria-hidden="true"></i>
                             Isi Data Diri
                         </a>
-
-
+                        @endif
+                        @endforeach
                     </tbody>
                 </table>
-
             </div>
         </div>
-        @endif
-        @endforeach
-        @foreach($datas as $data)
-        @if ($data->status == 'belum')
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Isi Data Diri</h6>
-            </div>
-            <div class="card-body">
-                <form method="post" action="{{ route('siswa.store') }}" id="myForm">
-                    @csrf
-                    <div class="form-group">
-                        <label for="Nim">Nisn</label>
-                        <br>
-                        <input type="text" name="nisn" class="form-control" id="Nim" aria-describedby="Nim" value="{{ Auth::user()->nisn }}" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="Nama">Nama</label>
-                        <br>
-                        <input type="Nama" name="nama" class="form-control" id="Nama" aria-describedby="Nama" value="{{ Auth::user()->name }}" readonly >
-                    </div>
-                    <div class="form-group">
-                        <label for="jk">Jenis Kelamin</label>
-                        <br>
-                        <input type="jenis_kelamin" name="jenis_kelamin" class="form-control" id="jenis_kelamin" aria-describedby="jenis_kelamin" >
-                    </div>
-                    <div class="form-group">
-                        <label for="No_Handphone">No Handphone</label>
-                        <br>
-                        <input type="No_Handphone" name="no_handphone" class="form-control" id="No_Handphone" aria-describedby="No_Handphone" >
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <br>
-                        <input type="email" name="email" class="form-control" id="email" aria-describedby="email" value="{{ Auth::user()->email }}" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="tgl_lahir">Tanggal Lahir</label>
-                        <br>
-                        <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir" aria-describedby="tgl_lahir" >
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-
-
-            </div>
-        </div>
-        @endif
-        @endforeach
     </div>
+
+
 </div>
 @endsection

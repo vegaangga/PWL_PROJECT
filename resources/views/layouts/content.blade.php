@@ -2,7 +2,7 @@
 @section('menu_home', 'active')
 @section('content')
 
-@php $a = Auth::user()->level->'admin' ; @endphp
+@php $a = Auth::user()->level ; @endphp
 @if($a == 0)
 <div class="row">
     <!-- Earnings (Monthly) Card Example -->
