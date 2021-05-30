@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Biaya;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
-class biayaController extends Controller
+class BiayaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,16 @@ class biayaController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::user()->level == '0') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('/');
+        }
+        $user = Auth::user();
+        // $datas = Biaya::where('user_id', Auth::user()->id);
+        $ub = Biaya::with('user')->get();
+        $datas = Biaya::all();
+        return view('siswa.biaya.index',['user' =>$user,'datas'=>$datas,'ub'=>$ub]);
+        // return view('siswa.step',['user' =>$user]);
     }
 
     /**
@@ -23,7 +35,14 @@ class biayaController extends Controller
      */
     public function create()
     {
-        //
+        $a = Auth::user()->nisn;
+        $b = Biaya::where('user_id', $a)->first();
+        if($b == null){
+            $user = Auth::user();
+            return view('siswa.biaya.create',['user' =>$user]);
+        }
+        Alert::info('Oopss..', 'Anda Sudah Mengisi Formulir');
+        return redirect()->to('/home');
     }
 
     /**
