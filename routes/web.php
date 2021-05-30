@@ -1,7 +1,10 @@
 <?php
 
+
+use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SiswaController;
+use App\Models\Biaya;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +35,7 @@ Auth::routes();
 //     Route::get('/cetak/{siswa}', [SiswaController::class,'cetak'])->name('siswa.cetak');
 // });
 
-Route::resource('siswa', SiswaController::class);
+
 
 //Route::get('mahasiswa/cetak_pdf/{nim}', [MahasiswaController::class, 'cetak_pdf'])->name('mahasiswa.cetak_pdf');
 
@@ -45,13 +48,25 @@ Route::resource('siswa', SiswaController::class);
 // });
 
 
-Route::middleware(['auth', 'ceklevel:0,1'])->group(function () {
+
+// Route::group(['middleware'=>['auth']],function(){
+//  Route::resource('siswa', SiswaController::class);
+//  Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// });
+
+Route::middleware(['auth', 'ceklevel:1'])->group(function () {
+    Route::resource('siswa', SiswaController::class);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/', [SiswaController::class,'index'])->name('siswa.index');
     Route::get('/profile', [SiswaController::class,'profile'])->name('siswa.profile');
     Route::get('/formulir', [SiswaController::class,'formulir'])->name('siswa.formulir');
     Route::get('/cetak/{siswa}', [SiswaController::class,'cetak'])->name('siswa.cetak');
+    Route::resource('daftar', BiayaController::class);
+    Route::get('/daftar', [BiayaController::class,'index'])->name('biaya.index');
+});
 
+Route::middleware(['auth', 'ceklevel:0'])->group(function () {
+    //Admin
     Route::get('/data-siswa', [HomeController::class,'datasiswa'])->name('admin.datasiswa');
     Route::get('/data-ortu', [HomeController::class,'dataortu'])->name('admin.dataortu');
     Route::get('/biaya-daftar', [HomeController::class,'biayadaftar'])->name('admin.biayadaftar');
