@@ -23,7 +23,7 @@ class User extends Authenticatable
         'nisn'
     ];
 
-    
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -43,4 +43,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function biaya_daftar()
+    {
+       return $this->hasOne(User::class);
+    }
 }

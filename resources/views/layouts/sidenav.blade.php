@@ -13,11 +13,11 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Home</span></a>
     </li>
-    @php $a = Auth::user()->role_id ; @endphp
+    @php $a = Auth::user()->level ; @endphp
     @if($a == 1)
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -34,23 +34,26 @@
             <span>Profile User</span>
         </a>
         @php
-        $a = Auth::user()->nisn;
-        $b = App\Models\Siswa::where('nisn', $a)->first();
+        $a = Auth::user()->id;
+        $b = App\Models\Biaya::where('user_id', $a)->first();
+        // $b = App\Models\Biaya::where('user_id', $a)->where('status','sudah')->first();/
+        $c= App\Models\Siswa::where('id', $a)->first();
         @endphp
         @if($b == null)
-        <a class="nav-link collapsed" href="{{route('siswa.create')}}"
+        <a class="nav-link collapsed" href="{{route('biaya.index')}}"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Formulir</span>
         </a>
         @endif
-        @if($b != null)
+
+
         <a class="nav-link collapsed" href="{{route('siswa.show',Auth::user()->nisn)}}"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Tersimpan</span>
         </a>
-        @endif
+
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">

@@ -28,7 +28,8 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
+        {{-- alert --}}
+        @include('sweetalert::alert')
         <!-- Sidebar -->
         @include('layouts.sidenav')
         <!-- End of Sidebar -->

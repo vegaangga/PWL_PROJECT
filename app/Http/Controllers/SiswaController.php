@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use PDF;
 class SiswaController extends Controller
 {
@@ -13,13 +14,21 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
+        if(Auth::user()->level == '0') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('/');
+        }
         $user = Auth::user();
         return view('siswa.index',['user' =>$user]);
         // return view('siswa.step',['user' =>$user]);
-
-
     }
 
     /**
@@ -29,8 +38,15 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        return view('siswa.create',['user' =>$user]);
+        $a = Auth::user()->nisn;
+        $b = Siswa::where('nisn', $a)->first();
+        if($b == null){
+            $user = Auth::user();
+            return view('siswa.create',['user' =>$user]);
+        }
+        Alert::info('Oopss..', 'Anda Sudah Mengisi Formulir');
+        return redirect()->to('/home');
+
     }
 
     /**
@@ -157,9 +173,8 @@ class SiswaController extends Controller
     public function cetak($nisn){
         $siswa = Siswa::find($nisn);
         $pdf = PDF::loadview('siswa.cetak_pdf', compact('siswa'));
-        //return $pdf->stream();
-
-        return view('siswa.cetak_pdf', compact('siswa'));
+        return $pdf->stream();
+        // return view('siswa.cetak_pdf', compact('siswa'));
     }
 
     // public function cetak($nisn) {

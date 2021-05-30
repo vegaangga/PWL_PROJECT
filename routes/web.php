@@ -53,10 +53,9 @@ Auth::routes();
 //  Route::resource('siswa', SiswaController::class);
 //  Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // });
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'ceklevel:1'])->group(function () {
     Route::resource('siswa', SiswaController::class);
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/', [SiswaController::class,'index'])->name('siswa.index');
     Route::get('/profile', [SiswaController::class,'profile'])->name('siswa.profile');
     Route::get('/formulir', [SiswaController::class,'formulir'])->name('siswa.formulir');
@@ -65,14 +64,14 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
     Route::get('/daftar', [BiayaController::class,'index'])->name('biaya.index');
 });
 
-Route::middleware(['auth', 'ceklevel:0'])->group(function () {
+// Route::middleware(['auth', 'ceklevel:0'])->group(function () {
     //Admin
     Route::get('/data-siswa', [HomeController::class,'datasiswa'])->name('admin.datasiswa');
     Route::get('/data-ortu', [HomeController::class,'dataortu'])->name('admin.dataortu');
     Route::get('/biaya-daftar', [HomeController::class,'biayadaftar'])->name('admin.biayadaftar');
     Route::get('/daftar-ulang', [HomeController::class,'daftarulang'])->name('admin.daftarulang');
     Route::get('/cetak', [HomeController::class,'cetak'])->name('cetak');
-});
+// });
 
 // Route::prefix('siswa')->group(function () {
 //     Route::get('/', [SiswaController::class,'index'])->name('siswa.index');

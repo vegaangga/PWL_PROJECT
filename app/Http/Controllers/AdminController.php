@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 class AdminController extends Controller
 {
     /**
@@ -11,8 +12,17 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
+        if(Auth::user()->level == '1') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('/');
+        }
+
         //
     }
 
