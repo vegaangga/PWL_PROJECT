@@ -16,15 +16,20 @@ class BiayaController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->level == '0') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/');
+        if(Auth::user()->level == 'admin') {
+            $ub = Biaya::with('user')->get();
+            $datas = Biaya::all();
+            return view('admin.biaya_daftar.index',['datas'=>$datas,'ub'=>$ub]);
         }
-        $user = Auth::user();
-        // $datas = Biaya::where('user_id', Auth::user()->id);
-        $ub = Biaya::with('user')->get();
-        $datas = Biaya::all();
-        return view('siswa.biaya.index',['user' =>$user,'datas'=>$datas,'ub'=>$ub]);
+        // if(Auth::user()->level == 'user') {
+        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     $user = Auth::user();
+        //     // $datas = Biaya::where('user_id', Auth::user()->id);
+        //     $ub = Biaya::with('user')->get();
+        //     $datas = Biaya::all();
+        //     return view('siswa.biaya.index',['user' =>$user,'datas'=>$datas,'ub'=>$ub]);
+        // }
+
         // return view('siswa.step',['user' =>$user]);
     }
 
@@ -87,7 +92,14 @@ class BiayaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $biaya = Biaya::find($id);
+
+        $biaya->update([
+                'status' => 'sudah'
+                ]);
+
+        alert()->success('Berhasil.','Data telah diubah!');
+        return redirect()->route('biaya.index');
     }
 
     /**
@@ -98,6 +110,8 @@ class BiayaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Biaya::find($id)->delete();
+        alert()->success('Berhasil.','Data telah dihapus!');
+        return redirect()->route('biaya.index');
     }
 }
