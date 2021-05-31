@@ -71,15 +71,15 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Pendaftaran</span>
         </a>
-        <a class="nav-link collapsed" href="#" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="{{url('/data-siswa')}}" aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Pribadi Calon Siswa</span>
         </a>
-        <a class="nav-link collapsed" href="#" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="{{url('/data-du')}}" aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Daftar Ulang</span>
         </a>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#admin"
+        <a class="nav-link collapsed" href="{{url('/data-master')}}" data-toggle="collapse" data-target="#admin"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Master</span>
