@@ -9,13 +9,34 @@ class Siswa extends Model
 {
     use HasFactory;
 
-    protected $table='coba_siswa';
+    protected $table='siswa';
 
     protected $fillable=[
-        'nisn',
-        'nama',
-        'jenis_kelamin',
-        'tgl_lahir',
-        'no_handphone'
+        'Id',
+        'User_id',
+        'NISN',
+        'Nama',
+        'email',
+        'No_telp',
+        'Foto',
+        'Tgl_lahir',
+        'Tempat_lahir',
+        'Alamat',
+        'Asal_sekolah',
+        'Status_ayah',
+        'Nama_ayah',
+        'Nik_ayah',
+        'Pekerjaan_ayah',
+        'Gaji_ayah',
+        'Status_ibu',
+        'Nama_ibu',
+        'Nik_ibu',
+        'Pekerjaan_ibu',
+        'Gaji_ibu'
     ];
+
+    public function user()
+    {
+       return $this->belongsTo(User::class);
+    }
 }
