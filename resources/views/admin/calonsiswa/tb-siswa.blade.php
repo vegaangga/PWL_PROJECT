@@ -19,27 +19,12 @@
                 <table class="data-table table nowrap">
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>User_id</th>
                             <th>NISN</th>
                             <th>Nama</th>
-                            <th>email</th>
-                            <th>No_telp</th>
-                            <th>Foto</th>
-                            <th>Tgl_lahir</th>
-                            <th>Tempat_lahir</th>
                             <th>Alamat</th>
                             <th>Asal_sekolah</th>
-                            <th>Status_ayah</th>
-                            <th>Nama_ayah</th>
-                            <th>Nik_ayah</th>
-                            <th>Pekerjaan_ayah</th>
-                            <th>Gaji_ayah</th>
-                            <th>Status_ibu</th>
-                            <th>Nama_ibu</th>
-                            <th>Nik_ibu</th>
-                            <th>Pekerjaan_ibu</th>
-                            <th>Gaji_ibu</th>
+                            <th>email</th>
+                            <th>No_telp</th>
                         </tr>
                     </thead>
                     <tbody id="myTable">
