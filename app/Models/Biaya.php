@@ -12,7 +12,7 @@ class Biaya extends Model
     protected $table='biaya_daftar';
 
     protected $fillable=[
-        'nama',
+        'name',
         'email',
         'struk',
         'status'
