@@ -8,7 +8,7 @@
         <div class="card shadow mb-4">
 
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Data Biaya Pendaftaran</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Data Siswa</h6>
             </div>
             <div class="card-body">
                 <div class="search-icon-box card-box mb-30">
@@ -25,6 +25,8 @@
                             <th>Asal_sekolah</th>
                             <th>email</th>
                             <th>No_telp</th>
+                            <th>add_ijazah</th>
+                            <th>add_foto</th>
                         </tr>
                     </thead>
                     <tbody id="myTable">
