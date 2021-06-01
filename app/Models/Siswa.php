@@ -17,7 +17,9 @@ class Siswa extends Model
         'Alamat',
         'Asal_sekolah',
         'email',
-        'No_telp'
+        'No_telp',
+        'add_ijazah',
+        'add_foto'
     ];
 
     public function user()
