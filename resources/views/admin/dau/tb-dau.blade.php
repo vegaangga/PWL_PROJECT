@@ -22,9 +22,8 @@
                             <th>NISN</th>
                             <th>Nama</th>
                             <th>Alamat</th>
-                            <th>Asal_sekolah</th>
-                            <th>email</th>
-                            <th>No_telp</th>
+                            <th>Asal Sekolah</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="myTable">
