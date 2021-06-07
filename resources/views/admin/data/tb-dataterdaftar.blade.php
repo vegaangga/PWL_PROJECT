@@ -8,7 +8,7 @@
         <div class="card shadow mb-4">
 
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Data Daftar Ulang</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Data User Terdaftar</h6>
             </div>
             <div class="card-body">
                 <div class="search-icon-box card-box mb-30">
