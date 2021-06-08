@@ -6,6 +6,7 @@ use App\Http\Controllers\CalonSiswaController;
 use App\Http\Controllers\DauSiswaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\UserController;
 use App\Models\Biaya;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -64,6 +65,7 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
     Route::get('/cetak/{siswa}', [SiswaController::class,'cetak'])->name('siswa.cetak');
     Route::resource('daftar', BiayaController::class);
     Route::get('/daftar', [BiayaController::class,'index'])->name('biaya.index');
+
 });
 
 // Route::middleware(['auth', 'ceklevel:0'])->group(function () {
@@ -71,6 +73,7 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
     Route::get('/data-siswa', [CalonSiswaController::class,'index']);
     Route::get('/data-du', [DauSiswaController::class,'index']);
     Route::get('/biaya-daftar', [BiayaController::class,'index']);
+    Route::resource('user', UserController::class);
     //Route::get('/daftar-ulang', [HomeController::class,'daftarulang'])->name('admin.daftarulang');
     Route::get('/cetak', [HomeController::class,'cetak'])->name('cetak');
 // });
