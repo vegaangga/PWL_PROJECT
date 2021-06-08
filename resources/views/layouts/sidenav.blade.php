@@ -86,7 +86,7 @@
         </a>
         <div id="admin" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{url('/data-terdaftar')}}">Data User Terdaftar</a>
+                <a class="collapse-item" href="{{route('user.index')}}">Data User Terdaftar</a>
                 <a class="collapse-item" href="{{url('/data-admin')}}">Data Admin</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
