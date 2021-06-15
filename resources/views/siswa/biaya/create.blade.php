@@ -19,8 +19,10 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('siswa.store') }}" id="myForm">
+                <form method="post" action="{{ route('biaya.store') }}" id="myForm" enctype="multipart/form-data">
                     @csrf
+
+                        <input type="text" name="user_id" class="form-control" id="user_id" aria-describedby="user_id" value="{{ Auth::user()->id }}" readonly>
                     <div class="form-group">
                         <label for="Nim">Nisn</label>
                         <br>
@@ -31,7 +33,7 @@
                     <div class="form-group">
                         <label for="Nama">Nama</label>
                         <br>
-                        <input type="Nama" name="nama" class="form-control" id="Nama" aria-describedby="Nama" value="{{ Auth::user()->name }}" >
+                        <input type="Nama" name="nama" class="form-control" id="Nama" aria-describedby="Nama" value="{{ Auth::user()->name }}" readonly >
                     </div>
                     <div class="form-group">
                         <label for="struk">Upload Struk Pembayaran</label>
