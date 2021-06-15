@@ -217,7 +217,7 @@
         </div>
      </div>
 
-     <div class="row">
+     {{-- <div class="row">
         <div class="col-lg-12 mb-4">
             <!-- Approach -->
              <div class="card shadow mb-4">
@@ -242,7 +242,7 @@
                  </div>
              </div>
         </div>
-     </div>
+     </div> --}}
 
     @endif
     {{-- <script src="{{asset('template\js\jquery-steps\jquery.steps.js')}}"></script>
