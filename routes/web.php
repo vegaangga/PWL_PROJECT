@@ -74,6 +74,7 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
     Route::get('/data-du', [DauSiswaController::class,'index']);
     Route::get('/biaya-daftar', [BiayaController::class,'index']);
     Route::resource('user', UserController::class);
+    Route::resource('biaya', BiayaController::class);
     //Route::get('/daftar-ulang', [HomeController::class,'daftarulang'])->name('admin.daftarulang');
     Route::get('/cetak', [HomeController::class,'cetak'])->name('cetak');
 // });
