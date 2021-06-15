@@ -41,7 +41,7 @@ class BiayaController extends Controller
         {
             //$datas = DB::table('biaya_daftar')->where('user_id', '8')->first();
             //$datas = Biaya::where('id','8');
-            $datas = Biaya::all();
+            $datas = Biaya::all()->where('user_id',Auth::user()->id);
             //$user = DB::table('biaya_daftar')->find(3);
             //$datas = Biaya::find('8');
             return view('siswa.biaya.index',compact('datas'));
@@ -93,7 +93,7 @@ class BiayaController extends Controller
             $dt = Carbon::now();
             $acak  = $file->getClientOriginalExtension();
             $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak;
-            $request->file('struk')->move("images/user", $fileName);
+            $request->file('struk')->move("images/bd", $fileName);
             $struk = $fileName;
         }
         // $a = Auth::user()->id;
@@ -122,7 +122,8 @@ class BiayaController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Biaya::findOrFail($id);
+        return view('siswa.biaya.show', compact('data'));
     }
 
     /**
