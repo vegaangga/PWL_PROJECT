@@ -14,8 +14,10 @@
                 </p>
                 @php
                 $a = Auth::user()->id;
-                $b = App\Models\Biaya::where('user_id', $a)->where('status','belum')->first();
+                $b = Auth::user()->verif_daftar;
                 // $c = App\Models\Biaya::where('status','belum')->where()
+
+
                 @endphp
                 @if($b == null)
                 <a href="{{ route('daftar.create') }}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
@@ -23,7 +25,10 @@
                     Upload Struk Pembayaran
                 </a>
                 @endif
-                @foreach($datas as $data)
+
+                @if ($b==0)
+                <p>Tunggu Admin Mengkonfirmasi Struk Anda </p>
+                @endif
                 <table class="data-table table nowrap">
                     <thead>
                         <tr>
@@ -33,13 +38,11 @@
                             <th>Status</th>
                         </tr>
                     </thead>
+
                     <tbody id="myTable">
 
-                        @if ($data->status == 'sudah')
-                        <p>Tunggu Admin Mengkonfirmasi Struk Anda </p>
-
+                        @foreach($datas as $data)
                         <tr>
-
                             <td>{{ $data->user_id}}</td>
                             <td>{{ $data->user->name }}</td>
                             <td></td>
@@ -51,8 +54,8 @@
                                 @endif
                             </td>
                         </tr>
-                        @endif
-                        @if ($data->status == 'belum')
+
+                        @if ($b==1)
                         <a href="{{ route('siswa.create') }}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff">
                             <i class="icon-copy fa fa-user-plus" aria-hidden="true"></i>
                             Isi Data Diri
@@ -61,6 +64,8 @@
                         @endforeach
                     </tbody>
                 </table>
+
+
             </div>
         </div>
     </div>
