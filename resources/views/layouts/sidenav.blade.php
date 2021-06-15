@@ -17,7 +17,11 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Home</span></a>
     </li>
-    @php $a = Auth::user()->level ; @endphp
+    @php
+    $a = Auth::user()->level;
+    $b = Auth::user()->verif_daftar;
+    @endphp
+
     @if($a == 1)
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -33,23 +37,15 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Profile User</span>
         </a>
-        {{-- @php
-        $a = Auth::user()->id;
-        $b = App\Models\Biaya::where('user_id', $a)->first();
-        // $b = App\Models\Biaya::where('user_id', $a)->where('status','sudah')->first();/
-        $c= App\Models\Siswa::where('id', $a)->first();
-        @endphp
-        @if($b == null) --}}
+
         <a class="nav-link collapsed" href="{{route('biaya.index')}}"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Formulir</span>
         </a>
+        @endif
         {{-- @endif --}}
-
-        @php $a = Auth::user()->verif_daftar ; @endphp
-        @if($a == 1)
-
+        @if($b == 1)
         <a class="nav-link collapsed" href="{{route('siswa.show',Auth::user()->nisn)}}"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
@@ -59,7 +55,7 @@
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
-    @endif
+
 
     @if($a == 0)
     <!-- Heading -->
