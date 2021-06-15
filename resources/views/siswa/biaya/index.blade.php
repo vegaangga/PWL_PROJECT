@@ -45,7 +45,11 @@
                         <tr>
                             <td>{{ $data->user_id}}</td>
                             <td>{{ $data->user->name }}</td>
-                            <td></td>
+                            <td>
+                                <a href="{{route('biaya.show', $data->id)}}">
+                                    Lihat Struk
+                                </a>
+                            </td>
                             <td>
                                 @if ($data->status == 'belum')
                                     <label class="badge badge-warning">Belum Terverifikasi</label>
