@@ -26,7 +26,7 @@
                         <br>
                         {{-- $anggota = Anggota::where('nis', $nis)->first();
                         @php $a = Auth::user()->nisn --}}
-                        <input type="text" name="nisn" class="form-control" id="Nim" aria-describedby="Nim" value="{{ Auth::user()->nisn }}" >
+                        <input type="text" name="nisn" class="form-control" id="Nim" aria-describedby="Nim" value="{{ Auth::user()->nisn }}" readonly>
                     </div>
                     <div class="form-group">
                         <label for="Nama">Nama</label>
@@ -34,25 +34,11 @@
                         <input type="Nama" name="nama" class="form-control" id="Nama" aria-describedby="Nama" value="{{ Auth::user()->name }}" >
                     </div>
                     <div class="form-group">
-                        <label for="jk">Jenis Kelamin</label>
+                        <label for="struk">Upload Struk Pembayaran</label>
                         <br>
-                        <input type="jenis_kelamin" name="jenis_kelamin" class="form-control" id="jenis_kelamin" aria-describedby="jenis_kelamin" >
+                        <input type="file" name="struk" class="form-control" id="struk" aria-describedby="struk" >
                     </div>
-                    <div class="form-group">
-                        <label for="No_Handphone">No Handphone</label>
-                        <br>
-                        <input type="No_Handphone" name="no_handphone" class="form-control" id="No_Handphone" aria-describedby="No_Handphone" >
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <br>
-                        <input type="email" name="email" class="form-control" id="email" aria-describedby="email" value="{{ Auth::user()->email }}" >
-                    </div>
-                    <div class="form-group">
-                        <label for="tgl_lahir">Tanggal Lahir</label>
-                        <br>
-                        <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir" aria-describedby="tgl_lahir" >
-                    </div>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
