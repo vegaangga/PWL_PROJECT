@@ -16,19 +16,19 @@ class BiayaController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->level == 'admin') {
+        if(Auth::user()->level == '0') {
             $ub = Biaya::with('user')->get();
             $datas = Biaya::all();
             return view('admin.biaya_daftar.index',['datas'=>$datas,'ub'=>$ub]);
         }
-        // if(Auth::user()->level == 'user') {
-        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-        //     $user = Auth::user();
-        //     // $datas = Biaya::where('user_id', Auth::user()->id);
-        //     $ub = Biaya::with('user')->get();
-        //     $datas = Biaya::all();
-        //     return view('siswa.biaya.index',['user' =>$user,'datas'=>$datas,'ub'=>$ub]);
-        // }
+        if(Auth::user()->level == '1') {
+            // Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            $user = Auth::user();
+            $datas = Biaya::where('user_id', Auth::user()->id);
+            $ub = Biaya::with('user')->get();
+            // $datas = Biaya::all();
+            return view('siswa.biaya.index',['user' =>$user,'datas'=>$datas,'ub'=>$ub]);
+        }
 
         // return view('siswa.step',['user' =>$user]);
     }
@@ -40,7 +40,8 @@ class BiayaController extends Controller
      */
     public function create()
     {
-        $a = Auth::user()->nisn;
+        if(Auth::user()->level == '1'){
+            $a = Auth::user()->nisn;
         $b = Biaya::where('user_id', $a)->first();
         if($b == null){
             $user = Auth::user();
@@ -48,6 +49,9 @@ class BiayaController extends Controller
         }
         Alert::info('Oopss..', 'Anda Sudah Mengisi Formulir');
         return redirect()->to('/home');
+        }
+        return view('admin.biaya_daftar.create');
+
     }
 
     /**
