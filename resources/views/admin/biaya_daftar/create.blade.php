@@ -19,16 +19,16 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('siswa.store') }}" id="myForm">
+                <form method="post" action="{{ route('siswa.store') }}" enctype="multipart/form-data" id="myForm">
                     @csrf
                     <div class="form-group">
-                        <label for="Nim">Nisn</label>
+                        <label for="Nim">Upload Struk Foto</label>
                         <br>
                         {{-- $anggota = Anggota::where('nis', $nis)->first();
                         @php $a = Auth::user()->nisn --}}
-                        <input type="text" name="nisn" class="form-control" id="Nim" aria-describedby="Nim" value="{{ Auth::user()->nisn }}" >
+                        <input type="file" name="struk" class="form-control" id="Nim" aria-describedby="Nim" value="{{ Auth::user()->nisn }}" >
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="Nama">Nama</label>
                         <br>
                         <input type="Nama" name="nama" class="form-control" id="Nama" aria-describedby="Nama" value="{{ Auth::user()->name }}" >
@@ -52,7 +52,7 @@
                         <label for="tgl_lahir">Tanggal Lahir</label>
                         <br>
                         <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir" aria-describedby="tgl_lahir" >
-                    </div>
+                    </div> --}}
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
