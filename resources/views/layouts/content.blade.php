@@ -189,6 +189,75 @@
 
     @if($a == 1)
     <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-12">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Struk Pembayaran Anda</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Terverifikasi</div>
+                        </div>
+                        <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300" style="color: #2fbd5b"></i></div>
+                        <div class="col-auto">
+                            <a href="#" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-5">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Isi Data Pribadi</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Belum</div>
+                        </div>
+                        <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300" ></i></div>
+                        <div class="col-auto">
+                            <a href="#" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-3">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Upload Daftar Ulang</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Belum Tersedia</div>
+                        </div>
+                        <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300" ></i></div>
+                        <div class="col-auto">
+                            <a href="#" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-3">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Cetak Data</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Belum Tersedia</div>
+                        </div>
+                        <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300" ></i></div>
+                        <div class="col-auto">
+                            <a href="#" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- -- --}}
         <div class="col-lg-12 mb-4">
             <!-- Approach -->
              <div class="card shadow mb-4">
@@ -217,32 +286,6 @@
         </div>
      </div>
 
-     {{-- <div class="row">
-        <div class="col-lg-12 mb-4">
-            <!-- Approach -->
-             <div class="card shadow mb-4">
-                 <div class="card-header py-3">
-                     <h6 class="m-0 font-weight-bold text-primary">{{ __('You are logged in!') }}</h6>
-                 </div>
-                 <div class="card-body">
-                     @if (session('status'))
-                     <div class="alert alert-success" role="alert">
-                         {{ session('status') }}
-                     </div>
-                     @endif
-                     Selamat datang di sistem informasi Penerimaan Peserta Didik Baru (PPDB) Online
-                                              <br>SMA NEGERI 1 PURI
-                                              <br><br>
-                    <div class="btn-group mb-15">
-                        <button type="button" class="btn btn-light">1</button>
-                        <button type="button" class="btn btn-light">2</button>
-                        <button type="button" class="btn btn-success ">3</button>
-                        <button type="button" class="btn btn-light">4</button>
-                    </div>
-                 </div>
-             </div>
-        </div>
-     </div> --}}
 
     @endif
     {{-- <script src="{{asset('template\js\jquery-steps\jquery.steps.js')}}"></script>
