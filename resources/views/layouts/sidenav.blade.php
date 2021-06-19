@@ -38,7 +38,7 @@
             <span>Profile User</span>
         </a>
 
-        <a class="nav-link collapsed" href="{{route('biaya.index')}}"
+        <a class="nav-link collapsed" href="{{route('siswa.daftar')}}"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Formulir</span>
