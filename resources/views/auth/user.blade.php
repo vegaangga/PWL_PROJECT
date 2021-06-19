@@ -37,30 +37,17 @@
                   <tbody id="myTable">
                   @foreach($datas as $data)
                     <tr>
-                      {{-- <td class="py-1">
-                      @if($data->gambar)
-                        <img width="30" height="30" src="{{url('images/user', $data->gambar)}}" alt="image" />
-                      @else
-                        <img width="30" height="30" src="{{url('images/user/default.png')}}" alt="image" />
-                      @endif
+                      <td>{{$data->nisn}}</td>
+                      <td>
+                        <a href="{{route('user.show', $data->id)}}">
                         {{$data->name}}
-                      </td> --}}
-                      <td>
-                        {{$data->nisn}}
+                        </a>
                       </td>
-                      <td>
-                      <a href="{{route('user.show', $data->id)}}">
-                      {{$data->name}}
-                      </a>
-                      </td>
-                      <td>
-                        {{$data->email}}
-                      </td>
+                      <td>{{$data->email}}</td>
                       <td>
                         @if ($data->level == '1')
                         <p>Siswa</p>
                         @endif
-
                       </td>
                       <td>
                         <form action="{{ route('user.destroy', $data->id) }}" method="POST">
