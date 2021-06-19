@@ -68,7 +68,10 @@ class BiayaController extends Controller
         Alert::info('Oopss..', 'Anda Sudah Mengisi Formulir');
         return redirect()->to('/home');
         }
-        return view('admin.biaya_daftar.create');
+        $datas = User::all()->where('level','1')
+        ->where('verif_daftar',null);
+
+        return view('admin.biaya_daftar.create',compact('datas'));
 
     }
 
@@ -80,7 +83,7 @@ class BiayaController extends Controller
      */
     public function store(Request $request)
     {
-
+        if(Auth::user()->level == '1'){
         $this->validate($request, [
             'user_id',
             'struk' => 'required|file',
@@ -109,8 +112,39 @@ class BiayaController extends Controller
         $biaya->update([
                  'verif_daftar' => '0',
                  ]);
-        alert()->success('Berhasil.','Struk Telah Ter-Upload');
+
+            alert()->success('Berhasil.','Struk Telah Ter-Upload');
         return redirect()->route('siswa.index');
+        }
+        //Admin
+        $this->validate($request, [
+            'user_id',
+            'struk' => 'required|file',
+        ]);
+
+        if($request->file('struk') == '') {
+            $struk = NULL;
+        } else {
+            $file = $request->file('struk');
+            $dt = Carbon::now();
+            $acak  = $file->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak;
+            $request->file('struk')->move("images/bd", $fileName);
+            $struk = $fileName;
+        }
+        // $a = Auth::user()->id;
+        Biaya::create([
+            'user_id' => $request->input('user_id'),
+            'struk' => $struk,
+            'status' => 'belum'
+        ]);
+
+        $user_id = $request->input('user_id');
+        User::find($user_id)->update([
+            'verif_daftar' => '0'
+            ]);
+        alert()->success('Berhasil.','Data telah ditambahkan');
+        return redirect()->route('biaya.index');
 
     }
 
@@ -122,8 +156,12 @@ class BiayaController extends Controller
      */
     public function show($id)
     {
+        if(Auth::user()->level == '1') {
+            $data = Biaya::findOrFail($id);
+            return view('siswa.biaya.show', compact('data'));
+        }
         $data = Biaya::findOrFail($id);
-        return view('siswa.biaya.show', compact('data'));
+        return view('admin.biaya_daftar.show', compact('data'));
     }
 
     /**
@@ -151,6 +189,12 @@ class BiayaController extends Controller
         $biaya->update([
                 'status' => 'sudah'
                 ]);
+
+        $user = User::find($id);
+
+        $user->update([
+                'verif_daftar' => '1'
+        ]);
 
         alert()->success('Berhasil.','Data telah diubah!');
         return redirect()->route('biaya.index');
