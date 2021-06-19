@@ -21,6 +21,7 @@
     <link href="{{asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
     {{-- plugins steps-setting --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {{-- <link rel="stylesheet" type="text/css" href="{{asset('template/plugins/jquery-steps/jquery.steps.css')}}"> --}}
 </head>
 
