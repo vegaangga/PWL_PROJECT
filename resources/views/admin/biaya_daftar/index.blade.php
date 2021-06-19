@@ -49,14 +49,14 @@
                             </td>
                             <td>
                                 @if ($data->status == 'belum')
-                                <form action="{{ route('daftar.update', $data->id) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('biaya.update', $data->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <button class="btn btn-info btn-sm" onclick="return confirm('Anda yakin struk sudah benar?')">Verifikasi
                                     </button>
                                 </form>
                                 @else
-                                <form action="{{ route('daftar.destroy', $data->id) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('biaya.destroy', $data->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-info btn-sm" onclick="return confirm('Hapus Data?')">Hapus
