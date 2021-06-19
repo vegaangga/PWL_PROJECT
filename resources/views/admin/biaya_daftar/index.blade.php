@@ -36,8 +36,8 @@
                             <td>{{ $data->user->nisn}}</td>
                             <td>{{ $data->user->name }}</td>
                             <td>
-                                <a href="">
-                                Lihat Struk
+                                <a href="{{route('biaya.show', $data->id)}}">
+                                    Lihat Struk
                                 </a>
                             </td>
                             <td>
@@ -88,7 +88,6 @@
             });
         });
     });
-
 </script>
 
 
