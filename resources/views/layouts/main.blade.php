@@ -19,7 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
-
+    <link href="{{asset('template/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
     {{-- plugins steps-setting --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {{-- <link rel="stylesheet" type="text/css" href="{{asset('template/plugins/jquery-steps/jquery.steps.css')}}"> --}}
@@ -128,6 +128,17 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('template/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('template/js/demo/chart-pie-demo.js')}}"></script>
+
+    {{-- table --}}
+    <!-- Bootstrap core JavaScript-->
+
+
+    <!-- Page level plugins -->
+    <script src="{{asset('template/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('template/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{asset('template/js/demo/datatables-demo.js')}}"></script>
 
 </body>
 
