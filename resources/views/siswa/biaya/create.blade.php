@@ -26,8 +26,6 @@
                     <div class="form-group">
                         <label for="Nim">Nisn</label>
                         <br>
-                        {{-- $anggota = Anggota::where('nis', $nis)->first();
-                        @php $a = Auth::user()->nisn --}}
                         <input type="text" name="nisn" class="form-control" id="Nim" aria-describedby="Nim" value="{{ Auth::user()->nisn }}" readonly>
                     </div>
                     <div class="form-group">
