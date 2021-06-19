@@ -44,7 +44,7 @@ class BiayaController extends Controller
             $datas = Biaya::all()->where('user_id',Auth::user()->id);
             //$user = DB::table('biaya_daftar')->find(3);
             //$datas = Biaya::find('8');
-            return view('siswa.biaya.index',compact('datas'));
+            return view('siswa.daftar.biaya.index',compact('datas'));
             //return view('Admin.Transaksi.tb-transaksi', compact('datas'));
         }
 
@@ -63,7 +63,7 @@ class BiayaController extends Controller
         $b = Biaya::where('user_id', $a)->first();
         if($b == null){
             $user = Auth::user();
-            return view('siswa.biaya.create',['user' =>$user]);
+            return view('siswa.daftar.biaya.create',['user' =>$user]);
         }
         Alert::info('Oopss..', 'Anda Sudah Mengisi Formulir');
         return redirect()->to('/home');
@@ -114,7 +114,7 @@ class BiayaController extends Controller
                  ]);
 
             alert()->success('Berhasil.','Struk Telah Ter-Upload');
-        return redirect()->route('siswa.index');
+        return redirect()->route('siswa.daftar.biaya.index');
         }
         //Admin
         $this->validate($request, [
@@ -158,7 +158,7 @@ class BiayaController extends Controller
     {
         if(Auth::user()->level == '1') {
             $data = Biaya::findOrFail($id);
-            return view('siswa.biaya.show', compact('data'));
+            return view('siswa.daftar.biaya.show', compact('data'));
         }
         $data = Biaya::findOrFail($id);
         return view('admin.biaya_daftar.show', compact('data'));

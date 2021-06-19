@@ -20,6 +20,8 @@ class CalonSiswaController extends Controller
             $datas = Siswa::all();
             return view('admin.calonsiswa.tb-siswa',['datas'=>$datas,'ub'=>$ub]);
         }
+        $user = Auth::user();
+        return view('siswa.create',['user' =>$user]);
     }
 
     /**
