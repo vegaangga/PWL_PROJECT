@@ -60,10 +60,13 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
 
 // Route::middleware(['auth', 'ceklevel:0'])->group(function () {
     //Admin
-    Route::get('/data-siswa', [CalonSiswaController::class,'index']);
-    Route::get('/data-du', [DauSiswaController::class,'index']);
-    Route::get('/biaya-daftar', [BiayaController::class,'index']);
-    Route::resource('user', UserController::class);
+    Route::prefix('data')->group(function () {
+        Route::resource('user', UserController::class);
+        Route::resource('biaya', BiayaController::class);
+        Route::resource('formulir', CalonSiswaController::class);
+        Route::resource('daftar-ulang', DauSiswaController::class);
+    });
+    
     //Route::get('/daftar-ulang', [HomeController::class,'daftarulang'])->name('admin.daftarulang');
     Route::get('/cetak', [HomeController::class,'cetak'])->name('cetak');
 // });
