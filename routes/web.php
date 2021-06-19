@@ -28,18 +28,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
-
-// Route::prefix('siswa')->group(function () {
-//     Route::get('/', [SiswaController::class,'index'])->name('siswa.index');
-//     Route::get('/profile', [SiswaController::class,'profile'])->name('siswa.profile');
-//     Route::get('/formulir', [SiswaController::class,'formulir'])->name('siswa.formulir');
-//     Route::get('/cetak/{siswa}', [SiswaController::class,'cetak'])->name('siswa.cetak');
-// });
-
-
-
 //Route::get('mahasiswa/cetak_pdf/{nim}', [MahasiswaController::class, 'cetak_pdf'])->name('mahasiswa.cetak_pdf');
 
 // Route::prefix('admin')->group(function () {
@@ -61,11 +49,13 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
     Route::resource('siswa', SiswaController::class);
     // Route::get('/', [SiswaController::class,'index'])->name('siswa.index');
     Route::get('/profile', [SiswaController::class,'profile'])->name('siswa.profile');
-    Route::get('/formulir', [SiswaController::class,'formulir'])->name('siswa.formulir');
     Route::get('/cetak/{siswa}', [SiswaController::class,'cetak'])->name('siswa.cetak');
-    Route::resource('daftar', BiayaController::class);
-    Route::resource('biaya', BiayaController::class);
-
+    Route::prefix('daftar')->group(function () {
+        Route::get('/', [SiswaController::class,'daftar'])->name('siswa.daftar');
+        Route::resource('biaya', BiayaController::class);
+        Route::resource('formulir', CalonSiswaController::class);
+        Route::resource('daftar-ulang', DauSiswaController::class);
+    });
 });
 
 // Route::middleware(['auth', 'ceklevel:0'])->group(function () {
@@ -74,16 +64,6 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
     Route::get('/data-du', [DauSiswaController::class,'index']);
     Route::get('/biaya-daftar', [BiayaController::class,'index']);
     Route::resource('user', UserController::class);
-
     //Route::get('/daftar-ulang', [HomeController::class,'daftarulang'])->name('admin.daftarulang');
     Route::get('/cetak', [HomeController::class,'cetak'])->name('cetak');
 // });
-
-// Route::prefix('siswa')->group(function () {
-//     Route::get('/', [SiswaController::class,'index'])->name('siswa.index');
-//     Route::get('/profile', [SiswaController::class,'profile'])->name('siswa.profile');
-//     Route::get('/formulir', [SiswaController::class,'formulir'])->name('siswa.formulir');
-//     Route::get('/cetak/{siswa}', [SiswaController::class,'cetak'])->name('siswa.cetak');
-// });
-
-// Route
