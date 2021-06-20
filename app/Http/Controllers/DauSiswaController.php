@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Dau;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DauSiswaController extends Controller
 {
@@ -29,7 +31,14 @@ class DauSiswaController extends Controller
      */
     public function create()
     {
-        //
+        $a = Auth::user()->nisn;
+        $b = Dau::where('user_id', $a)->first();
+        if($b == null){
+            $user = Auth::user();
+            return view('daftar-ulang.index',['user' =>$user]);
+        }
+        Alert::info('Oopss..', 'Anda Sudah Mengisi Formulir');
+        return redirect()->to('/home');
     }
 
     /**
@@ -74,7 +83,14 @@ class DauSiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dau = Dau::find($id);
+
+        $dau->update([
+                'status' => 'sudah'
+                ]);
+
+        alert()->success('Berhasil.','Data telah diubah!');
+        return redirect()->route('daftar-ulang.index');
     }
 
     /**
@@ -85,6 +101,8 @@ class DauSiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Dau::find($id)->delete();
+        alert()->success('Berhasil.','Data telah dihapus!');
+        return redirect()->route('daftar_ulang.index');
     }
 }
