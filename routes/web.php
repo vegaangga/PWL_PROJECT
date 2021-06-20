@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\CalonSiswaController;
 use App\Http\Controllers\DauSiswaController;
@@ -76,6 +76,7 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
     Route::resource('user', UserController::class);
     //Route::get('/daftar-ulang', [HomeController::class,'daftarulang'])->name('admin.daftarulang');
     Route::get('/cetak', [HomeController::class,'cetak'])->name('cetak');
+    Route::get('/data-admin', [AdminController::class, 'index']);
 // });
 
 // Route::prefix('siswa')->group(function () {
