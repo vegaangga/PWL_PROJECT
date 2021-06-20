@@ -10,7 +10,7 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Data Siswa</h6>
             </div>
-            <a href="" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="width: 175px; background-color: #496edb;margin-left: 20px; color:white; margin-top:10px">
+            <a href="siswa/create" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="width: 175px; background-color: #496edb;margin-left: 20px; color:white; margin-top:10px">
                 <i class="icon-copy fa fa-user-plus" aria-hidden="true"></i>
                 Tambah Data
             </a>
