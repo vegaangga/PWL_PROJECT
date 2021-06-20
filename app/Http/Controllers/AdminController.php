@@ -22,8 +22,6 @@ class AdminController extends Controller
             Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
             return redirect()->to('/');
         }
-
-        //
     }
 
     /**
