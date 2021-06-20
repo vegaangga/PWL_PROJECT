@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Biaya;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -183,4 +184,11 @@ class SiswaController extends Controller
     //     //return $pdf->stream('siswa.pdf');
     //     return view('siswa.cetak_pdf', compact('siswa'));
     // }
+
+    public function daftar()
+    {
+        $datas = Biaya::all()->where('user_id',Auth::user()->id);
+        $user = Auth::user();
+        return view('siswa.daftar.daftar',['user' =>$user,'datas'=>$datas]);
+    }
 }

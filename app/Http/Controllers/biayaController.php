@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Biaya;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class BiayaController extends Controller
@@ -16,19 +19,34 @@ class BiayaController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->level == 'admin') {
+        if(Auth::user()->level == '0') {
             $ub = Biaya::with('user')->get();
             $datas = Biaya::all();
             return view('admin.biaya_daftar.index',['datas'=>$datas,'ub'=>$ub]);
         }
-        // if(Auth::user()->level == 'user') {
-        //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        // if(Auth::user()->level == '1') {
+        //     // Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //     // $user = Auth::user();
+        //     // return view('siswa.profile',['user' =>$user]);
+
         //     $user = Auth::user();
-        //     // $datas = Biaya::where('user_id', Auth::user()->id);
+        //     $datas = Biaya::where('user_id', Auth::user()->id);
         //     $ub = Biaya::with('user')->get();
-        //     $datas = Biaya::all();
+        //     //$datas = Biaya::all();
         //     return view('siswa.biaya.index',['user' =>$user,'datas'=>$datas,'ub'=>$ub]);
+        //     //return view('siswa.biaya.index',['user' =>$user,'datas'=>$datas]);
         // }
+
+        if(Auth::user()->level == '1')
+        {
+            //$datas = DB::table('biaya_daftar')->where('user_id', '8')->first();
+            //$datas = Biaya::where('id','8');
+            $datas = Biaya::all()->where('user_id',Auth::user()->id);
+            //$user = DB::table('biaya_daftar')->find(3);
+            //$datas = Biaya::find('8');
+            return view('siswa.daftar.biaya.index',compact('datas'));
+            //return view('Admin.Transaksi.tb-transaksi', compact('datas'));
+        }
 
         // return view('siswa.step',['user' =>$user]);
     }
@@ -40,14 +58,21 @@ class BiayaController extends Controller
      */
     public function create()
     {
-        $a = Auth::user()->nisn;
+        if(Auth::user()->level == '1'){
+            $a = Auth::user()->id;
         $b = Biaya::where('user_id', $a)->first();
         if($b == null){
             $user = Auth::user();
-            return view('siswa.biaya.create',['user' =>$user]);
+            return view('siswa.daftar.biaya.create',['user' =>$user]);
         }
         Alert::info('Oopss..', 'Anda Sudah Mengisi Formulir');
         return redirect()->to('/home');
+        }
+        $datas = User::all()->where('level','1')
+        ->where('verif_daftar',null);
+
+        return view('admin.biaya_daftar.create',compact('datas'));
+
     }
 
     /**
@@ -58,7 +83,69 @@ class BiayaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Auth::user()->level == '1'){
+        $this->validate($request, [
+            'user_id',
+            'struk' => 'required|file',
+        ]);
+
+        if($request->file('struk') == '') {
+            $struk = NULL;
+        } else {
+            $file = $request->file('struk');
+            $dt = Carbon::now();
+            $acak  = $file->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak;
+            $request->file('struk')->move("images/bd", $fileName);
+            $struk = $fileName;
+        }
+        // $a = Auth::user()->id;
+        Biaya::create([
+            'user_id' => $request->input('user_id'),
+            'struk' => $struk,
+            'status' => 'belum'
+        ]);
+
+        $a = Auth::user()->id;
+        $biaya = User::find($a);
+
+        $biaya->update([
+                 'verif_daftar' => '0',
+                 ]);
+
+            alert()->success('Berhasil.','Struk Telah Ter-Upload');
+        return redirect()->route('siswa.daftar.biaya.index');
+        }
+        //Admin
+        $this->validate($request, [
+            'user_id',
+            'struk' => 'required|file',
+        ]);
+
+        if($request->file('struk') == '') {
+            $struk = NULL;
+        } else {
+            $file = $request->file('struk');
+            $dt = Carbon::now();
+            $acak  = $file->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak;
+            $request->file('struk')->move("images/bd", $fileName);
+            $struk = $fileName;
+        }
+        // $a = Auth::user()->id;
+        Biaya::create([
+            'user_id' => $request->input('user_id'),
+            'struk' => $struk,
+            'status' => 'belum'
+        ]);
+
+        $user_id = $request->input('user_id');
+        User::find($user_id)->update([
+            'verif_daftar' => '0'
+            ]);
+        alert()->success('Berhasil.','Data telah ditambahkan');
+        return redirect()->route('biaya.index');
+
     }
 
     /**
@@ -69,7 +156,12 @@ class BiayaController extends Controller
      */
     public function show($id)
     {
-        //
+        if(Auth::user()->level == '1') {
+            $data = Biaya::findOrFail($id);
+            return view('siswa.daftar.biaya.show', compact('data'));
+        }
+        $data = Biaya::findOrFail($id);
+        return view('admin.biaya_daftar.show', compact('data'));
     }
 
     /**
@@ -97,6 +189,12 @@ class BiayaController extends Controller
         $biaya->update([
                 'status' => 'sudah'
                 ]);
+
+        $user = User::find($id);
+
+        $user->update([
+                'verif_daftar' => '1'
+        ]);
 
         alert()->success('Berhasil.','Data telah diubah!');
         return redirect()->route('biaya.index');

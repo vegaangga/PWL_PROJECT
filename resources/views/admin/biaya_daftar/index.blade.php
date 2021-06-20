@@ -10,7 +10,7 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Data Biaya Pendaftaran</h6>
             </div>
-            <a href="" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="width: 175px; background-color: #496edb;margin-left: 20px; color:white; margin-top:10px">
+            <a href="{{Route('biaya.create')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="width: 175px; background-color: #496edb;margin-left: 20px; color:white; margin-top:10px">
                 <i class="icon-copy fa fa-user-plus" aria-hidden="true"></i>
                 Tambah Data
             </a>
@@ -35,7 +35,11 @@
                         <tr>
                             <td>{{ $data->user->nisn}}</td>
                             <td>{{ $data->user->name }}</td>
-                            <td>Lihat Struk</td>
+                            <td>
+                                <a href="{{route('biaya.show', $data->id)}}">
+                                    Lihat Struk
+                                </a>
+                            </td>
                             <td>
                                 @if ($data->status == 'belum')
                                     <label class="badge badge-warning">Belum Terverifikasi</label>
@@ -45,14 +49,14 @@
                             </td>
                             <td>
                                 @if ($data->status == 'belum')
-                                <form action="{{ route('daftar.update', $data->id) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('biaya.update', $data->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <button class="btn btn-info btn-sm" onclick="return confirm('Anda yakin struk sudah benar?')">Verifikasi
                                     </button>
                                 </form>
                                 @else
-                                <form action="{{ route('daftar.destroy', $data->id) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('biaya.destroy', $data->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-info btn-sm" onclick="return confirm('Hapus Data?')">Hapus
@@ -84,7 +88,6 @@
             });
         });
     });
-
 </script>
 
 
