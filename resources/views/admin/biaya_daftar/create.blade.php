@@ -73,7 +73,7 @@
     <div class="modal-dialog modal-lg" role="document" >
         <div class="modal-content" style="background: #fff;">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cari Buku</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Cari User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -82,7 +82,7 @@
                 <table id="lookup" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th> Nisn </th>
+                            <th> NISN </th>
                             <th> Nama </th>
                             <th> Email </th>
                             <th> Level </th>
