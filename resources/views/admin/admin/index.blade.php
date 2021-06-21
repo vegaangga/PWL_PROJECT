@@ -9,10 +9,22 @@
            <div class="card-header py-3">
                <h6 class="m-0 font-weight-bold text-primary">Data User Terdaftar</h6>
            </div>
-           <a href="{{ route('admin.create') }}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="width: 175px; background-color: #496edb;margin-left: 20px; color:white; margin-top:10px">
-            <i class="icon-copy fa fa-user-plus" aria-hidden="true"></i>
-            Tambah Data
-          </a>
+           <div style="margin-top:20px; margin-left:20px">
+              <a href="{{ route('admin.create') }}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="width: 175px; background-color: #496edb; color:white;">
+              <i class="icon-copy fa fa-user-plus" aria-hidden="true"></i>
+              Tambah Data
+              </a>
+              <div class="btn-group dropdown">
+                <a href="#" type="button" class="btn btn-danger" data-toggle="dropdown"  data-color="#ffffff">
+                    <i class="icon-copy fa fa-download" aria-hidden="true"></i>
+                    Download Data
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{url('laporan/admin/excel')}}">Excel</a>
+                    <a class="dropdown-item" href="{{url('laporan/admin/pdf')}}">PDF</a>
+                </div>
+            </div>
+           </div>
            <div class="card-body">
                @if ($errors->any())
                <div class="alert alert-danger">
@@ -24,7 +36,7 @@
                    </ul>
                </div>
                @endif
-               <table class="table table-bordered">
+               <table class="table table-bordered" id="dataTable">
                 <thead>
                     <tr>
                         <th> Nisn </th>
