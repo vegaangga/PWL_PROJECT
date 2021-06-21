@@ -129,7 +129,7 @@
                                 <td>{{ $data->user_id}}</td>
                                 <td>{{ $data->user->name }}</td>
                                 <td>
-                                    <a href="{{route('biaya.show', $data->id)}}">
+                                    <a href="{{route('biaya.show', $data->user_id)}}">
                                         Lihat Struk
                                     </a>
                                 </td>
