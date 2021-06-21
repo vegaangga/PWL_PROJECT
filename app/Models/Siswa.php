@@ -10,12 +10,12 @@ class Siswa extends Model
     use HasFactory;
 
     protected $table='siswa';
-
+    protected $primaryKey = 'user_id';
     protected $fillable=[
+        'user_id',
         'nisn',
-        'nama',
-        'email',
-        'no_twlp',
+        'jk',
+        'no_telp',
         'foto',
         'tgl_lahir',
         'tempat_lahir',
@@ -26,7 +26,9 @@ class Siswa extends Model
         'nama_ayah',
         'nik_ayah',
         'pekerjaan_ayah',
+        'gaji_ayah',
         'status_ibu',
+        'nama_ibu',
         'nik_ibu',
         'pekerjaan_ibu',
         'gaji_ibu',

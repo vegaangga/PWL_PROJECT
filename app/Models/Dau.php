@@ -9,14 +9,12 @@ class Dau extends Model
 {
     use HasFactory;
 
-    protected $table='siswa';
-
+    protected $table='daftar_ulang';
+    protected $primaryKey = 'user_id';
     protected $fillable=[
-        'NISN',
-        'name',
-        'email',
-        'No_telp',
-        'struk'
+        'user_id',
+        'struk',
+        'status'
     ];
 
     public function user()

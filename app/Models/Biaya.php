@@ -10,7 +10,7 @@ class Biaya extends Model
     use HasFactory;
 
     protected $table='biaya_daftar';
-
+    protected $primaryKey = 'user_id';
     protected $fillable=[
         'user_id',
         'struk',
