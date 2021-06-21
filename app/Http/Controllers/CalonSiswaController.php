@@ -30,7 +30,8 @@ class CalonSiswaController extends Controller
             return view('admin.calonsiswa.index',['datas'=>$datas,'ub'=>$ub]);
         }
         $user = Auth::user();
-        return view('siswa.daftar.formulir.create',['user' =>$user]);
+        $datas = Siswa::all()->where('user_id',Auth::user()->id);
+        return view('siswa.daftar.formulir.index',['user' =>$user,'datas'=>$datas]);
     }
 
     /**
