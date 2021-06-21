@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Dau;
+use App\Models\Dau as ModelsDau;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class DauExport implements FromCollection
@@ -12,6 +13,6 @@ class DauExport implements FromCollection
     */
     public function collection()
     {
-        return Dau::all();
+        return ModelsDau::all();
     }
 }
