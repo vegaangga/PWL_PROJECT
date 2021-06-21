@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Models\Siswa as ModelsSiswa;
 use App\Siswa;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
@@ -12,6 +13,6 @@ class SiswaExport implements FromCollection
     */
     public function collection()
     {
-        return Siswa::all();
+        return ModelsSiswa::all();
     }
 }
