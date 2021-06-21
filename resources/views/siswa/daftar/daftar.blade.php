@@ -49,7 +49,7 @@
                     <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300"></i></div>
                     @endif
                     <div class="col-auto">
-                        <a href="{{route('formulir.index')}}" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
+                        <a href="{{route('formulir.create')}}" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
                     </div>
                 </div>
             </div>
