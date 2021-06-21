@@ -5,6 +5,7 @@ use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\CalonSiswaController;
 use App\Http\Controllers\DauSiswaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use App\Models\Biaya;
@@ -30,13 +31,6 @@ Auth::routes();
 
 //Route::get('mahasiswa/cetak_pdf/{nim}', [MahasiswaController::class, 'cetak_pdf'])->name('mahasiswa.cetak_pdf');
 
-// Route::prefix('admin')->group(function () {
-//     Route::get('/data-siswa', [HomeController::class,'datasiswa'])->name('admin.datasiswa');
-//     Route::get('/data-ortu', [HomeController::class,'dataortu'])->name('admin.dataortu');
-//     Route::get('/biaya-daftar', [HomeController::class,'biayadaftar'])->name('admin.biayadaftar');
-//     Route::get('/daftar-ulang', [HomeController::class,'daftarulang'])->name('admin.daftarulang');
-//     Route::get('/cetak', [HomeController::class,'cetak'])->name('cetak');
-// });
 
 
 
@@ -47,7 +41,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'ceklevel:1'])->group(function () {
     Route::resource('siswa', SiswaController::class);
-    // Route::get('/', [SiswaController::class,'index'])->name('siswa.index');
     Route::get('/profile', [SiswaController::class,'profile'])->name('siswa.profile');
     Route::get('/cetak/{siswa}', [SiswaController::class,'cetak'])->name('siswa.cetak');
     Route::prefix('daftar')->group(function () {
@@ -67,8 +60,18 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
         Route::resource('daftar-ulang', DauSiswaController::class);
         Route::resource('admin', AdminController::class);
     });
+    Route::prefix('laporan')->group(function () {
+        Route::get('biaya/pdf', [LaporanController::class,'biayaPdf']);
+        Route::get('biaya/excel', [LaporanController::class,'biayaExcel']);
+        Route::get('siswa/pdf', [LaporanController::class,'siswaPdf']);
+        Route::get('siswa/excel', [LaporanController::class,'siswaExcel']);
+        Route::get('daftar-ulang/pdf', [LaporanController::class,'dauPdf']);
+        Route::get('daftar-ulang/excel', [LaporanController::class,'dauExcel']);
+        Route::get('user/pdf', [LaporanController::class,'userPdf']);
+        Route::get('user/excel', [LaporanController::class,'userExcel']);
+        Route::get('admin/pdf', [LaporanController::class,'adminPdf']);
+        Route::get('admin/excel', [LaporanController::class,'adminExcel']);
+    });
 
-    //Route::get('/daftar-ulang', [HomeController::class,'daftarulang'])->name('admin.daftarulang');
     Route::get('/cetak', [HomeController::class,'cetak'])->name('cetak');
     Route::get('/data-admin', [AdminController::class, 'index']);
-// });
