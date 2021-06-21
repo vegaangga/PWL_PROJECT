@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'nisn',
         'verif_daftar',
+        'data_diri',
         'verif_dau',
     ];
 
