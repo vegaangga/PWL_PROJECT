@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dau;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,12 +17,16 @@ class DauSiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         if(Auth::user()->level == 'admin') {
             $ub = Dau::with('user')->get();
             $datas = Dau::all();
-            return view('admin.dau.tb-dau',['datas'=>$datas,'ub'=>$ub]);
+            return view('admin.daftar_ulang.index',['datas'=>$datas,'ub'=>$ub]);
         }
     }
 
@@ -31,14 +37,21 @@ class DauSiswaController extends Controller
      */
     public function create()
     {
-        $a = Auth::user()->nisn;
+        if(Auth::user()->level == '1'){
+            $a = Auth::user()->id;
         $b = Dau::where('user_id', $a)->first();
         if($b == null){
             $user = Auth::user();
-            return view('daftar-ulang.index',['user' =>$user]);
+            return view('siswa.daftar.biaya.create',['user' =>$user]);
         }
         Alert::info('Oopss..', 'Anda Sudah Mengisi Formulir');
         return redirect()->to('/home');
+        }
+
+        $datas = User::all()->where('level','1')
+        ->where('data_diri','1');
+
+        return view('admin.daftar_ulang.create',compact('datas'));
     }
 
     /**
@@ -49,7 +62,68 @@ class DauSiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Auth::user()->level == '1'){
+        $this->validate($request, [
+            'user_id',
+            'struk' => 'required|file',
+        ]);
+
+        if($request->file('struk') == '') {
+            $struk = NULL;
+        } else {
+            $file = $request->file('struk');
+            $dt = Carbon::now();
+            $acak  = $file->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak;
+            $request->file('struk')->move("images/bd", $fileName);
+            $struk = $fileName;
+        }
+        // $a = Auth::user()->id;
+        Dau::create([
+            'user_id' => $request->input('user_id'),
+            'struk' => $struk,
+            'status' => 'belum'
+        ]);
+
+        $a = Auth::user()->id;
+        $biaya = User::find($a);
+
+        $biaya->update([
+                 'verif_daftar' => '0',
+                 ]);
+
+            alert()->success('Berhasil.','Struk Telah Ter-Upload');
+        return redirect()->route('siswa.daftar.biaya.index');
+        }
+        //Admin
+        $this->validate($request, [
+            'user_id',
+            'struk' => 'required|file',
+        ]);
+
+        if($request->file('struk') == '') {
+            $struk = NULL;
+        } else {
+            $file = $request->file('struk');
+            $dt = Carbon::now();
+            $acak  = $file->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak;
+            $request->file('struk')->move("images/bd", $fileName);
+            $struk = $fileName;
+        }
+        // $a = Auth::user()->id;
+        Dau::create([
+            'user_id' => $request->input('user_id'),
+            'struk' => $struk,
+            'status' => 'belum'
+        ]);
+
+        $user_id = $request->input('user_id');
+        User::find($user_id)->update([
+            'verif_daftar' => '0'
+            ]);
+        alert()->success('Berhasil.','Data telah ditambahkan');
+        return redirect()->route('daftar-ulang.index');
     }
 
     /**
@@ -84,7 +158,6 @@ class DauSiswaController extends Controller
     public function update(Request $request, $id)
     {
         $dau = Dau::find($id);
-
         $dau->update([
                 'status' => 'sudah'
                 ]);
