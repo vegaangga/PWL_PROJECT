@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Biaya;
+use App\Models\Biaya as ModelsBiaya;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class BiayaExport implements FromCollection
@@ -12,6 +13,6 @@ class BiayaExport implements FromCollection
     */
     public function collection()
     {
-        return Biaya::all();
+        return ModelsBiaya::all();
     }
 }
