@@ -10,10 +10,22 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Data Siswa</h6>
             </div>
-            <a href="{{route('formulir.create')}}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="width: 175px; background-color: #496edb;margin-left: 20px; color:white; margin-top:10px">
+            <div style="margin-top:20px; margin-left:20px">
+                <a href="{{ route('formulir.create') }}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="width: 175px; background-color: #496edb; color:white;">
                 <i class="icon-copy fa fa-user-plus" aria-hidden="true"></i>
                 Tambah Data
-            </a>
+                </a>
+                <div class="btn-group dropdown">
+                  <a href="#" type="button" class="btn btn-danger" data-toggle="dropdown"  data-color="#ffffff">
+                      <i class="icon-copy fa fa-download" aria-hidden="true"></i>
+                      Download Data
+                  </a>
+                  <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{{url('laporan/siswa/excel')}}">Excel</a>
+                      <a class="dropdown-item" href="{{url('laporan/siswa/pdf')}}">PDF</a>
+                  </div>
+              </div>
+            </div>
             <div class="card-body">
 
                 {{-- <div class="search-icon-box card-box mb-30">
