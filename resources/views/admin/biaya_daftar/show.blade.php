@@ -13,12 +13,12 @@
                     <tr>
                         <th>Name</th>
                         <th>:</th>
-                        <td>{{ $data -> user_id}}</td>
+                        <td>{{ $data -> user->name}}</td>
                     </tr>
                     <tr>
                         <th>Email</th>
                         <th>:</th>
-                        <td>{{ $data -> user-> name}}</td>
+                        <td>{{ $data -> user-> email}}</td>
                     </tr>
                     <tr>
                         <th>Struk</th>
@@ -31,7 +31,7 @@
                         </th>
                         <th>
                             @if ($data->status == 'belum')
-                            <form action="{{ route('daftar.update', $data->id) }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('biaya.update', $data->user_id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <button class="btn btn-success" onclick="return confirm('Anda yakin struk sudah benar?')">Verifikasi

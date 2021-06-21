@@ -15,12 +15,12 @@
                 Tambah Data
             </a>
             <div class="card-body">
-                <div class="search-icon-box card-box mb-30">
+                {{-- <div class="search-icon-box card-box mb-30">
                     <input type="text" class="form-control" id="myInput" placeholder="Search" title="Type in a name"
                         style="background-color:rgb(250, 252, 252)">
                     <i class="search_icon dw dw-search"></i>
-                </div>
-                <table class="data-table table nowrap">
+                </div> --}}
+                <table class="table table-bordered" id="dataTable">
                     <thead>
                         <tr>
                             <th>NISN</th>
@@ -36,7 +36,7 @@
                             <td>{{ $data->user->nisn}}</td>
                             <td>{{ $data->user->name }}</td>
                             <td>
-                                <a href="{{route('biaya.show', $data->id)}}">
+                                <a href="{{route('biaya.show', $data->user_id)}}">
                                     Lihat Struk
                                 </a>
                             </td>
@@ -49,14 +49,14 @@
                             </td>
                             <td>
                                 @if ($data->status == 'belum')
-                                <form action="{{ route('biaya.update', $data->id) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('biaya.update', $data->user->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <button class="btn btn-info btn-sm" onclick="return confirm('Anda yakin struk sudah benar?')">Verifikasi
                                     </button>
                                 </form>
                                 @else
-                                <form action="{{ route('biaya.destroy', $data->id) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('biaya.destroy', $data->user->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-info btn-sm" onclick="return confirm('Hapus Data?')">Hapus
