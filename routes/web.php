@@ -65,8 +65,9 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
         Route::resource('biaya', BiayaController::class);
         Route::resource('formulir', CalonSiswaController::class);
         Route::resource('daftar-ulang', DauSiswaController::class);
+        Route::resource('admin', AdminController::class);
     });
-    
+
     //Route::get('/daftar-ulang', [HomeController::class,'daftarulang'])->name('admin.daftarulang');
     Route::get('/cetak', [HomeController::class,'cetak'])->name('cetak');
     Route::get('/data-admin', [AdminController::class, 'index']);
