@@ -164,6 +164,10 @@ return [
 
         //Menambah Package PDF
         Barryvdh\DomPDF\ServiceProvider::class,
+
+        //Excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
         //SweetAlert
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         /*
@@ -235,7 +239,8 @@ return [
         //Package pdf
         'PDF' => Barryvdh\DomPDF\Facade::class,
 
-        //sweetalert
+        //Excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         //SweetAlert
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
