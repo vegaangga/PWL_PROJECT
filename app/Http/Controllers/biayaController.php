@@ -133,6 +133,7 @@ class BiayaController extends Controller
             $struk = $fileName;
         }
         // $a = Auth::user()->id;
+
         Biaya::create([
             'user_id' => $request->input('user_id'),
             'struk' => $struk,
@@ -151,7 +152,7 @@ class BiayaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $user_id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -160,8 +161,10 @@ class BiayaController extends Controller
             $data = Biaya::findOrFail($id);
             return view('siswa.daftar.biaya.show', compact('data'));
         }
+
         $data = Biaya::findOrFail($id);
         return view('admin.biaya_daftar.show', compact('data'));
+
     }
 
     /**
@@ -182,18 +185,16 @@ class BiayaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $user_id)
     {
-        $biaya = Biaya::find($id);
-
+        $biaya = Biaya::find($user_id);
         $biaya->update([
                 'status' => 'sudah'
                 ]);
 
-        $user = User::find($id);
-
+        $user = User::find($user_id);
         $user->update([
-                'verif_daftar' => '1'
+                'verif_daftar' => '0'
         ]);
 
         alert()->success('Berhasil.','Data telah diubah!');
@@ -209,6 +210,10 @@ class BiayaController extends Controller
     public function destroy($id)
     {
         Biaya::find($id)->delete();
+        $user = User::find($id);
+        $user->update([
+                'verif_daftar' => null
+        ]);
         alert()->success('Berhasil.','Data telah dihapus!');
         return redirect()->route('biaya.index');
     }
