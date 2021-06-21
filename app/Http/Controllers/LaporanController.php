@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AdminExport;
 use App\Exports\BiayaExport;
+use App\Exports\SiswaExport;
+use App\Exports\UsersExport;
 use App\Models\Biaya;
 use App\Models\Dau;
 use App\Models\Siswa;
@@ -22,7 +25,6 @@ class LaporanController extends Controller
 
     public function biayaPdf()
     {
-
         $datas = Biaya::all();
         $pdf = PDF::loadView('admin.laporan.biaya_pdf', compact('datas'));
         return $pdf->download('admin.laporan.biaya_pdf'.date('Y-m-d_H-i-s').'.pdf');
@@ -43,7 +45,7 @@ class LaporanController extends Controller
 
     public function siswaExcel(Request $request)
     {
-
+        return Excel::download(new SiswaExport, 'Siswa.xlsx');
     }
 
     public function dauPdf()
@@ -62,7 +64,7 @@ class LaporanController extends Controller
 
     public function userExcel(Request $request)
     {
-
+        return Excel::download(new UsersExport, 'User.xlsx');
     }
 
     public function adminPdf()
@@ -73,6 +75,6 @@ class LaporanController extends Controller
     }
     public function adminExcel(Request $request)
     {
-        
+        return Excel::download(new AdminExport, 'Admin.xlsx');
     }
 }
