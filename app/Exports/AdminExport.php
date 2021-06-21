@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Models\User as ModelsUser;
 use App\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
@@ -12,6 +13,6 @@ class AdminExport implements FromCollection
     */
     public function collection()
     {
-        return User::all();
+        return ModelsUser::all()->where('level','==','0');
     }
 }
