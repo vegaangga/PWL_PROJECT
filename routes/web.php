@@ -8,7 +8,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
-use App\Models\Biaya;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
