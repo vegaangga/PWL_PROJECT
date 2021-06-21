@@ -27,7 +27,7 @@ class CalonSiswaController extends Controller
         if(Auth::user()->level == 'admin') {
             $ub = Siswa::with('user')->get();
             $datas = Siswa::all();
-            return view('admin.calonsiswa.tb-siswa',['datas'=>$datas,'ub'=>$ub]);
+            return view('admin.calonsiswa.index',['datas'=>$datas,'ub'=>$ub]);
         }
         $user = Auth::user();
         return view('siswa.daftar.formulir.create',['user' =>$user]);
