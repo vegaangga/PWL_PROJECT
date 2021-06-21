@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
-
+use App\Exports\BiayaExport;
 use App\Models\Biaya;
 use App\Models\Dau;
 use App\Models\Siswa;
@@ -11,7 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PDF;
-use Excel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanController extends Controller
 {
@@ -32,7 +31,7 @@ class LaporanController extends Controller
 
     public function biayaExcel(Request $request)
     {
-     return Excel::download(new BukuExport, 'buku.xlsx');
+     return Excel::download(new BiayaExport, 'Biaya.xlsx');
     }
 
     public function siswaPdf()
@@ -74,6 +73,6 @@ class LaporanController extends Controller
     }
     public function adminExcel(Request $request)
     {
-    
+        
     }
 }
