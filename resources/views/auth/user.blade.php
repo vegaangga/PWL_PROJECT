@@ -9,10 +9,22 @@
            <div class="card-header py-3">
                <h6 class="m-0 font-weight-bold text-primary">Data User Terdaftar</h6>
            </div>
-           <a href="{{ route('user.create') }}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="width: 175px; background-color: #496edb;margin-left: 20px; color:white; margin-top:10px">
+           <div style="margin-top:20px; margin-left:20px">
+            <a href="{{ route('user.create') }}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="width: 175px; background-color: #496edb; color:white;">
             <i class="icon-copy fa fa-user-plus" aria-hidden="true"></i>
             Tambah Data
-          </a>
+            </a>
+            <div class="btn-group dropdown">
+              <a href="#" type="button" class="btn btn-danger" data-toggle="dropdown"  data-color="#ffffff">
+                  <i class="icon-copy fa fa-download" aria-hidden="true"></i>
+                  Download Data
+              </a>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{{url('laporan/user/excel')}}">Excel</a>
+                  <a class="dropdown-item" href="{{url('laporan/user/pdf')}}">PDF</a>
+              </div>
+          </div>
+        </div>
            <div class="card-body">
                @if ($errors->any())
                <div class="alert alert-danger">
@@ -24,7 +36,7 @@
                    </ul>
                </div>
                @endif
-               <table class="data-table table nowrap">
+               <table class="table table-bordered" id="dataTable">
                 <thead>
                     <tr>
                         <th> Nisn </th>
@@ -51,7 +63,7 @@
                       </td>
                       <td>
                         <form action="{{ route('user.destroy', $data->id) }}" method="POST">
-                            <a href="{{ route('user.show', $data->id) }}" class="btn" data-bgcolor="#28a745" data-color="#ffffff">
+                            <a href="{{ route('user.show', $data->id) }}" class="btn" style="background-color: cyan">
                                 <i class="icon-copy fa fa-info-circle" aria-hidden="true"></i>
                             </a>
                             <a href="{{route('user.edit', $data->id)}}" class="btn" data-bgcolor="#ffc107" data-color="#ffffff">
