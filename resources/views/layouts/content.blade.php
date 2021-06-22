@@ -13,48 +13,29 @@
                     <div class="col mr-5">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Jumlah Pendaftar</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Terverifikasi</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$user_aktif->count()}}</div>
                     </div>
                     <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300"></i></div>
                     <div class="col-auto">
-                        <a href="#" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
+                        <a href="{{route('user.index')}}" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Request Validasi Pendaftar</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                    </div>
-                    <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
-                    <div class="col-auto">
-                        <a href="#" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Daftar Ulang</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Terverifikasi</div>
+                    <div class="col mr-5">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Validasi Biaya Daftar</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$biaya->count()}}</div>
                     </div>
-                    <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
+                    <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300"></i></div>
                     <div class="col-auto">
-                        <a href="#" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
+                        <a href="{{route('biaya.index')}}" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
                     </div>
                 </div>
             </div>
@@ -63,53 +44,129 @@
 
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
+        <div class="card border-left-warning shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                        </div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                            </div>
-                            <div class="col">
-                                <div class="progress progress-sm mr-2">
-                                    <div class="progress-bar bg-info" role="progressbar"
-                                        style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                        aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col mr-5">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Validasi Data Siswa</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$siswa->count()}}</div>
                     </div>
+                    <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300"></i></div>
                     <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        <a href="{{route('formulir.index')}}" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Earnings (Monthly) Card Example -->
+
     <!-- Pending Requests Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card border-left-danger shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Validation Requests</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                    <div class="col mr-5">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Validasi Daftar Ulang</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$dau->count()}}</div>
                     </div>
-                    <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
+                    <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300"></i></div>
                     <div class="col-auto">
-                        <a href="#" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
+                        <a href="{{route('daftar-ulang.index')}}" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <div class="row">
+    <div class="col-lg-12 mb-4">
+        <!-- Approach -->
+         <div class="card shadow mb-4">
+             <div class="card-header py-3">
+                 <h6 class="m-0 font-weight-bold text-primary">Data User Terdaftar</h6>
+             </div>
+             <div style="margin-top:20px; margin-left:20px">
+              <a href="{{ route('user.create') }}" type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="width: 175px; background-color: #496edb; color:white;">
+              <i class="icon-copy fa fa-user-plus" aria-hidden="true"></i>
+              Tambah Data
+              </a>
+              <div class="btn-group dropdown">
+                <a href="#" type="button" class="btn btn-danger" data-toggle="dropdown"  data-color="#ffffff">
+                    <i class="icon-copy fa fa-download" aria-hidden="true"></i>
+                    Download Data
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{url('laporan/user/excel')}}">Excel</a>
+                    <a class="dropdown-item" href="{{url('laporan/user/pdf')}}">PDF</a>
+                </div>
+            </div>
+          </div>
+             <div class="card-body">
+                 @if ($errors->any())
+                 <div class="alert alert-danger">
+                     <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                     <ul>
+                         @foreach ($errors->all() as $error)
+                         <li>{{ $error }}</li>
+                         @endforeach
+                     </ul>
+                 </div>
+                 @endif
+                 <table class="table table-bordered" id="dataTable">
+                  <thead>
+                      <tr>
+                          <th> Nisn </th>
+                          <th> Nama </th>
+                          <th> Email </th>
+                          <th> Level </th>
+                          <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="myTable">
+                    @foreach($user_aktif as $data)
+                      <tr>
+                        <td>{{$data->nisn}}</td>
+                        <td>
+                          <a href="{{route('user.show', $data->id)}}">
+                          {{$data->name}}
+                          </a>
+                        </td>
+                        <td>{{$data->email}}</td>
+                        <td>
+                          @if ($data->level == '1')
+                          <p>Siswa</p>
+                          @endif
+                        </td>
+                        <td>
+                          <form action="{{ route('user.destroy', $data->id) }}" method="POST">
+                              <a href="{{ route('user.show', $data->id) }}" class="btn" style="background-color: cyan">
+                                  <i class="icon-copy fa fa-info-circle" aria-hidden="true"></i>
+                              </a>
+                              <a href="{{route('user.edit', $data->id)}}" class="btn" data-bgcolor="#ffc107" data-color="#ffffff">
+                                  <i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </a>
+                          @csrf
+                          @method('DELETE')
+                          <button onclick="return confirm('Anda yakin ingin meghapus data ini ?')" class="btn btn-danger" >
+                              <i class="icon-copy fa fa-trash" aria-hidden="true"></i>
+                          </form>
+                      </td>
+                      </tr>
+                    @endforeach
+                    </tbody>
+                  </table>
+             </div>
+         </div>
+  </div>
+
+  </div>
+
+{{-- <div class="row">
 
     <!-- Area Chart -->
     <div class="col-xl-8 col-lg-7">
@@ -183,80 +240,13 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endif
 <!-- Siswa Content -->
 
     @if($a == 1)
     <div class="row">
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-12">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Struk Pembayaran Anda</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Terverifikasi</div>
-                        </div>
-                        <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300" style="color: #2fbd5b"></i></div>
-                        <div class="col-auto">
-                            <a href="#" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-5">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Isi Data Pribadi</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Belum</div>
-                        </div>
-                        <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300" ></i></div>
-                        <div class="col-auto">
-                            <a href="#" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-3">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Upload Daftar Ulang</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Belum Tersedia</div>
-                        </div>
-                        <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300" ></i></div>
-                        <div class="col-auto">
-                            <a href="#" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-3">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Cetak Data</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Belum Tersedia</div>
-                        </div>
-                        <div class="col-auto"><i class="fas fa-check-circle fa-2x text-gray-300" ></i></div>
-                        <div class="col-auto">
-                            <a href="#" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('layouts.petunjuk')
         {{-- -- --}}
         <div class="col-lg-12 mb-4">
             <!-- Approach -->
@@ -276,7 +266,7 @@
                                               Panduan Pendaftaran:
                                               <br>1. Isi seluruh formulir yang ditampilkan kemudian periksa kembali, pastikan tidak ada data yang salah.
                                               <br>2. Klik submit, kemudian klik Confirm. Setelah di-confirm, data tidak dapat diubah kembali.
-                                              <br>3. Jika sudah, bukti pendaftaran akan ditampilkan dan dapat diunduh menjadi PDF
+                                              <br>3. Jika anda sudah menyelesaikan seluruh step, bukti dokumen akan ditampilkan dan dapat diunduh menjadi PDF
                                               <br>
                                               <br>*Note: Pihak sekolah baru akan menerima data Anda setelah Anda klik 'Confirm'
 
