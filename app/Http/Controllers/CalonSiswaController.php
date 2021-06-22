@@ -24,7 +24,7 @@ class CalonSiswaController extends Controller
     }
     public function index()
     {
-        if(Auth::user()->level == 'admin') {
+        if(Auth::user()->level == '0') {
             $ub = Siswa::with('user')->get();
             $datas = Siswa::all();
             return view('admin.calonsiswa.index',['datas'=>$datas,'ub'=>$ub]);
@@ -40,22 +40,22 @@ class CalonSiswaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        if(Auth::user()->level == 'admin') {
-            $datas = User::all()->where('level','1')
-            ->where('verif_daftar','1');
-            return view('admin.calonsiswa.create',['datas'=>$datas]);
-        }
-        $a = Auth::user()->nisn;
-        $b = Siswa::where('nisn', $a)->first();
+    {   if(Auth::user()->level == '1'){
+        $a = Auth::user()->id;
+        $b = Siswa::where('user_id', $a)->first();
         if($b == null){
             $user = Auth::user();
             return view('siswa.daftar.formulir.create',['user' =>$user]);
         }
         Alert::info('Oopss..', 'Anda Sudah Mengisi Formulir');
-        return redirect()->to('/home');
-        // $user = Auth::user();
-        // return view('siswa.daftar.formulir.create',['user' =>$user]);
+        return redirect()->to('/daftar');
+        }
+        if(Auth::user()->level == '0') {
+            $datas = User::all()->where('level','1')
+            ->where('verif_daftar','1')
+            ->where('data_diri',null);
+            return view('admin.calonsiswa.create',['datas'=>$datas]);
+        }
     }
 
     /**
@@ -66,82 +66,87 @@ class CalonSiswaController extends Controller
      */
     public function store(Request $request)
     {
-        // if(Auth::user()->level == '1'){
-        //     $this->validate($request, [
-        //         'user_id',
-        //         'nisn',
-        //         'jk',
-        //         'email',
-        //         'no_telp'=>'required|string|max:13',
-        //         'foto' => 'required|file',
-        //         'tgl_lahir',
-        //         'alamat'=>'required|string|max:255',
-        //         'asal_sekolah'=>'required|string|max:100',
-        //         'add_ijazah' => 'required|file',
-        //         'status_ayah',
-        //         'nama_ayah'=>'required|string|max:255',
-        //         'nik_ayah'=>'required|string|max:15',
-        //         'pekerjaan_ayah',
-        //         'gaji_ayah'=>'required|integer|max:1000000000',
-        //         'status_ibu',
-        //         'nama_ibu',
-        //         'nik_ibu',
-        //         'pekerjaan_ibu',
-        //         'gaji_ibu'=>'required|integer|max:1000000000',
+        if(Auth::user()->level == '1'){
+            $this->validate($request, [
+                'user_id',
+                'nisn',
+                'jk',
+                'email',
+                'no_telp'=>'required|string|max:13',
+                'foto' => 'required|file',
+                'tgl_lahir',
+                'alamat'=>'required|string|max:255',
+                'asal_sekolah'=>'required|string|max:100',
+                'add_ijazah' => 'required|file',
+                'status_ayah',
+                'nama_ayah'=>'required|string|max:255',
+                'nik_ayah'=>'required|string|max:15',
+                'pekerjaan_ayah',
+                'gaji_ayah'=>'required|integer|max:1000000000',
+                'status_ibu',
+                'nama_ibu',
+                'nik_ibu',
+                'pekerjaan_ibu',
+                'gaji_ibu'=>'required|integer|max:1000000000',
+            ]);
 
-        //     ]);
+            if($request->file('foto') == '') {
+                $foto = NULL;
+            } else {
+                $file1 = $request->file('foto');
+                $dt = Carbon::now();
+                $acak1  = $file1->getClientOriginalExtension();
+                $fileName1 = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak1;
+                $request->file('foto')->move("images/foto_siswa", $fileName1);
+                $foto = $fileName1;
+            }
+            if($request->file('add_ijazah') == '') {
+                $foto2 = NULL;
+            } else {
+                $file2 = $request->file('add_ijazah');
+                $dt = Carbon::now();
+                $acak2  = $file2->getClientOriginalExtension();
+                $filename2 = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak2;
+                $request->file('add_ijazah')->move("images/ijazah_siswa", $filename2);
+                $foto2 = $filename2;
+            }
 
-        //     if($request->file('foto,add_ijazah') == '') {
-        //         $foto = NULL;
-        //         $add_ijazah = NULL;
-        //     } else {
-        //         $file1 = $request->file('foto');
-        //         $file2 = $request->file('add_ijazah');
-        //         $dt = Carbon::now();
-        //         $acak1  = $file1->getClientOriginalExtension();
-        //         $acak2  = $file2->getClientOriginalExtension();
-        //         $fileName1 = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak1;
-        //         $fileName2 = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak2;
-        //         $request->file('foto')->move("images/foto_siswa", $fileName1);
-        //         $request->file('add_ijazah')->move("images/ijazah_siswa", $fileName2);
-        //         $foto = $fileName1;
-        //         $add_ijazah = $fileName2;
-        //     }
-        //     // $a = Auth::user()->id;
-        //     Siswa::create([
-        //         'user_id' => $request->input('user_id'),
-        //         'nisn'=> $request->input('nisn'),
-        //         // 'nama'=> $request->input('nama'),
-        //         'jk'=> $request->input('jk'),
-        //         'email'=> $request->input('email'),
-        //         'no_telp'=> $request->input('no_telp'),
-        //         'foto' => $foto,
-        //         'tgl_lahir'=> $request->input('tgl_lahir'),
-        //         'alamat'=> $request->input('alamat'),
-        //         'asal_sekolah'=> $request->input('asal_sekolah'),
-        //         'add_ijazah' => $add_ijazah,
-        //         'status_ayah'=> $request->input('status_ayah'),
-        //         'nama_ayah'=> $request->input('nama_ayah'),
-        //         'nik_ayah'=> $request->input('nik_ayah'),
-        //         'pekerjaan_ayah'=> $request->input('pekerjaan_ayah'),
-        //         'gaji_ayah'=> $request->input('gaji_ayah'),
-        //         'status_ibu'=> $request->input('status_ibu'),
-        //         'nama_ibu'=> $request->input('nama_ibu'),
-        //         'nik_ibu'=> $request->input('nik_ibu'),
-        //         'pekerjaan_ibu'=> $request->input('pekerjaan_ibu'),
-        //         'gaji_ibu'=> $request->input('gaji_ibu'),
-        //     ]);
+            // $a = Auth::user()->id;
+            Siswa::create([
+                'user_id' => $request->input('user_id'),
+                'nisn'=> $request->input('nisn'),
+                // 'nama'=> $request->input('nama'),
+                'jk'=> $request->input('jk'),
+                'email'=> $request->input('email'),
+                'no_telp'=> $request->input('no_telp'),
+                'foto' => $foto,
+                'tgl_lahir'=> $request->input('tgl_lahir'),
+                'alamat'=> $request->input('alamat'),
+                'asal_sekolah'=> $request->input('asal_sekolah'),
+                'add_ijazah' => $foto2,
+                'status_ayah'=> $request->input('status_ayah'),
+                'nama_ayah'=> $request->input('nama_ayah'),
+                'nik_ayah'=> $request->input('nik_ayah'),
+                'pekerjaan_ayah'=> $request->input('pekerjaan_ayah'),
+                'gaji_ayah'=> $request->input('gaji_ayah'),
+                'status_ibu'=> $request->input('status_ibu'),
+                'nama_ibu'=> $request->input('nama_ibu'),
+                'nik_ibu'=> $request->input('nik_ibu'),
+                'pekerjaan_ibu'=> $request->input('pekerjaan_ibu'),
+                'gaji_ibu'=> $request->input('gaji_ibu'),
+            ]);
 
-        //     $a = Auth::user()->id;
-        //     $data_diri = User::find($a);
+            $a = Auth::user()->id;
+            $data_diri = User::find($a);
 
-        //     $data_diri->update([
-        //              'data_diri' => '0',
-        //              ]);
+            $data_diri->update([
+                     'data_diri' => '0',
+                     ]);
 
-        //         alert()->success('Berhasil.','Data Telah Ter-Simpan');
-        //     return redirect()->route('siswa.daftar.biaya.index');
-        // }
+            alert()->success('Berhasil.','Data Telah Ter-Simpan');
+            return redirect()->route('siswa.daftar.biaya.index');
+        }
+        if(Auth::user()->level == '0'){
             //Admin
             $this->validate($request, [
                 'user_id'=>'required',
@@ -217,6 +222,7 @@ class CalonSiswaController extends Controller
                 ]);
             alert()->success('Berhasil.','Data telah ditambahkan');
             return redirect()->route('formulir.index');
+        }
     }
 
     /**
@@ -228,8 +234,8 @@ class CalonSiswaController extends Controller
     public function show($id)
     {
         if(Auth::user()->level == '1') {
-            $data = Biaya::findOrFail($id);
-            return view('siswa.daftar.biaya.show', compact('data'));
+            $data = Siswa::findOrFail($id);
+            return view('siswa.daftar.formulir.show', compact('data'));
         }
         $user = Siswa::with('user')->get();
         $data = Siswa::findOrFail($id);
