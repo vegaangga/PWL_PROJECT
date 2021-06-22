@@ -41,17 +41,11 @@
         <a class="nav-link collapsed" href="{{route('siswa.daftar')}}"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Formulir</span>
+            <span>PPDB</span>
         </a>
         @endif
         {{-- @endif --}}
-        @if($b == 1)
-        <a class="nav-link collapsed" href="{{route('siswa.show',Auth::user()->nisn)}}"
-            aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Data Tersimpan</span>
-        </a>
-        @endif
+
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
