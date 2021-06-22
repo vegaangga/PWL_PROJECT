@@ -229,7 +229,8 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="{{route('formulir.index')}}" class="btn btn-primary">Back</a>
+                    <button type="submit" class="btn btn-danger"onclick="return confirm('Simpan Data?')">Submit</button>
             </div>
         </div>
     </form>

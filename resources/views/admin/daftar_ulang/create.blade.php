@@ -59,7 +59,7 @@
                         <input type="file" name="struk" class="form-control" id="Nim" aria-describedby="Nim" value="{{ Auth::user()->nisn }}" >
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" onclick="return confirm('Simpan Data?')">Submit</button>
 
                     {{-- <button type="button" class="btn btn-danger" onclick="history.back();">Back</button> --}}
                 </form>

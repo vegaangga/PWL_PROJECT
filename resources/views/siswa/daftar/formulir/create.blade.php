@@ -158,7 +158,7 @@
                         <br>
                         <input type="text" name="gaji_ibu" class="form-control" id="gaji_ayah" aria-describedby="gaji_ayah" >
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" onclick="return confirm('Anda yakin ingin Menyimpan data ini?')">Confirm</button>
             </div>
         </div>
     </form>
