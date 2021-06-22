@@ -66,7 +66,7 @@ class BiayaController extends Controller
             return view('siswa.daftar.biaya.create',['user' =>$user]);
         }
         Alert::info('Oopss..', 'Anda Sudah Mengisi Formulir');
-        return redirect()->to('/home');
+        return redirect()->to('/daftar');
         }
         $datas = User::all()->where('level','1')
         ->where('verif_daftar',null);
