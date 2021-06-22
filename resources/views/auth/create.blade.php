@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Tambah Data User') }}</div>
 
                 <div class="card-body">
-                    <form method="POST"action="{{ route('user.store') }}">
+                    <form method="POST"action="{{ route('user.store') }}" >
                         @csrf
                         {{-- <div style="text-align: center">
                             <img src="{{asset('homepage/img/logocastle.png')}}" alt="Avatar" class="avatar" style="width: 150px">

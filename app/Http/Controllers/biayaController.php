@@ -114,7 +114,7 @@ class BiayaController extends Controller
                  ]);
 
             alert()->success('Berhasil.','Struk Telah Ter-Upload');
-        return redirect()->route('siswa.daftar.biaya.index');
+        return redirect()->route('biaya.index');
         }
         //Admin
         $this->validate($request, [
@@ -194,7 +194,7 @@ class BiayaController extends Controller
 
         $user = User::find($user_id);
         $user->update([
-                'verif_daftar' => '0'
+                'verif_daftar' => '1'
         ]);
 
         alert()->success('Berhasil.','Data telah diubah!');

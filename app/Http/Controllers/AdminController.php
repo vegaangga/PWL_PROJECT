@@ -88,7 +88,6 @@ class AdminController extends Controller
             Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
             return redirect()->to('/login');
         }
-
         $data = User::findOrFail($id);
         return view('admin.admin.show', compact('data'));
     }

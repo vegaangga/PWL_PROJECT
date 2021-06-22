@@ -38,9 +38,19 @@ class LaporanController extends Controller
 
     public function siswaPdf()
     {
-        $datas = Siswa::all();
-        $pdf = PDF::loadView('admin.laporan.calonsiswa_pdf', compact('datas'));
-        return $pdf->download('admin.laporan.calonsiswa_pdf'.date('Y-m-d_H-i-s').'.pdf');
+        if(Auth::user()->level == '1') {
+            $user = Auth::user();
+            $datas = Siswa::with('user')->get()->where('user_id',Auth::user()->id);
+            $pdf = PDF::loadView('siswa.daftar.laporan.calonsiswa_pdf', compact('datas'));
+            //return $pdf->download('siswa.laporan.calonsiswa_pdf'.date('Y-m-d_H-i-s').'.pdf');
+            return view('siswa.daftar.laporan.calonsiswa_pdf',['datas'=>$datas]);
+            // return $user;
+        }
+        if(Auth::user()->level == '0') {
+            $datas = Siswa::all();
+            $pdf = PDF::loadView('admin.laporan.calonsiswa_pdf', compact('datas'));
+            return $pdf->download('admin.laporan.calonsiswa_pdf'.date('Y-m-d_H-i-s').'.pdf');
+        }
     }
 
     public function siswaExcel(Request $request)

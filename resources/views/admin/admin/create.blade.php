@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="nisn" class="col-md-4 col-form-label text-md-right">{{ __('NISN') }}</label>
+                            <label for="nisn" class="col-md-4 col-form-label text-md-right">{{ __('Nip') }}</label>
 
                             <div class="col-md-6">
                                 <input id="nisn" type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{ old('nisn') }}" required autocomplete="nisn" autofocus>
@@ -76,6 +76,20 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="level" class="col-md-4 col-form-label text-md-right">{{ __('Level') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="level" type="text" class="form-control @error('nisn') is-invalid @enderror" name="level" value="{{ old('nisn') }}" required autocomplete="nisn" autofocus>
+
+                                @error('level')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

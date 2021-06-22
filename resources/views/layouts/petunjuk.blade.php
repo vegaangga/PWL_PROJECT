@@ -118,7 +118,7 @@ $c = Auth::user()->verif_dau;
                         @endif
                 <div class="col-auto">
                     @if ($b==true)
-                    <a href="" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
+                    <a href="{{url('pdf')}}" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>
                         @endif
                         @if ($b=='0')
                         <a href="" class="small-box-footer">View Detail<i class="fas fa-arrow-circle-right"></a></i>

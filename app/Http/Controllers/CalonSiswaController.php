@@ -69,7 +69,6 @@ class CalonSiswaController extends Controller
         if(Auth::user()->level == '1'){
             $this->validate($request, [
                 'user_id',
-                'nisn',
                 'jk',
                 'email',
                 'no_telp'=>'required|string|max:13',
@@ -144,7 +143,7 @@ class CalonSiswaController extends Controller
                      ]);
 
             alert()->success('Berhasil.','Data Telah Ter-Simpan');
-            return redirect()->route('siswa.daftar.biaya.index');
+            return redirect()->route('formulir.index');
         }
         if(Auth::user()->level == '0'){
             //Admin
@@ -170,7 +169,6 @@ class CalonSiswaController extends Controller
                 'nik_ibu',
                 'pekerjaan_ibu',
                 'gaji_ibu'=>'required|integer|max:1000000000',
-
             ]);
 
             if($request->file('foto') == '') {
@@ -268,7 +266,6 @@ class CalonSiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         if($request->file('foto')) {
             $file1 = $request->file('foto');
             $dt1 = Carbon::now();
@@ -294,8 +291,8 @@ class CalonSiswaController extends Controller
             $foto2 = $awal;
         }
 
-
         Siswa::find($id)->update([
+
             'jk' => $request->get('jk'),
             'email'=> $request->get('email'),
             'no_telp'=> $request->get('no_telp'),
@@ -315,7 +312,16 @@ class CalonSiswaController extends Controller
             'nik_ibu'=> $request->get('nik_ibu'),
             'pekerjaan_ibu'=> $request->get('pekerjaan_ibu'),
             'gaji_ibu'=> $request->get('gaji_ibu'),
+            'konfirmasi'=> $request->get('konfirmasi'),
         ]);
+        
+        Siswa::find($id)->update([
+            'konfirmasi' => 'sudah'
+            ]);
+
+        User::find($id)->update([
+                'data_diri' => '1'
+                ]);
         alert()->success('Berhasil.','Data telah dirubah');
         return redirect()->route('formulir.index');
     }
@@ -336,5 +342,14 @@ class CalonSiswaController extends Controller
         alert()->success('Berhasil.','Data telah dihapus!');
         return redirect()->route('formulir.index');
     }
+
+    // public function konfirmasi($id){
+    //     $user = User::find($id);
+    //     $user->update([
+    //             'data_diri' => '1'
+    //     ]);
+    //     alert()->success('Berhasil.','Data telah terkonfimasi!');
+    //     return redirect()->route('formulir.index');
+    // }
 
 }

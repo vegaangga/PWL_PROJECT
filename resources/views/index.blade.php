@@ -150,10 +150,6 @@ Beriman, Bertaqwa, Berdisiplin, Berprestasi, Berbudaya Santun, Berwawasan Adiwiy
         <i class="fa fa-phone" style="width:30px"></i> Phone: (0321) 322636 | Fax. (0321) 327674<br>
         <i class="fa fa-envelope" style="width:30px"> </i> Email: info@sman1puri.sch.id<br>
       </div>
-      <div class="w3-col m12 w3-large w3-margin-bottom" style="background-color: #0066FF">
-        <p>yay</p>
-
-      </div>
 
     </div>
 

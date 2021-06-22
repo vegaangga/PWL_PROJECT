@@ -41,13 +41,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth', 'ceklevel:1'])->group(function () {
     Route::resource('siswa', SiswaController::class);
     Route::get('/profile', [SiswaController::class,'profile'])->name('siswa.profile');
-    Route::get('/cetak/{siswa}', [SiswaController::class,'cetak'])->name('siswa.cetak');
+    // Route::get('/cetak/{siswa}', [SiswaController::class,'cetak'])->name('siswa.cetak');
     Route::prefix('daftar')->group(function () {
         Route::get('/', [SiswaController::class,'daftar'])->name('siswa.daftar');
         Route::resource('biaya', BiayaController::class);
         Route::resource('formulir', CalonSiswaController::class);
         Route::resource('daftar-ulang', DauSiswaController::class);
     });
+    Route::get('pdf', [LaporanController::class,'siswaPdf']);
 });
 
 // Route::middleware(['auth', 'ceklevel:0'])->group(function () {
@@ -58,6 +59,7 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
         Route::resource('formulir', CalonSiswaController::class);
         Route::resource('daftar-ulang', DauSiswaController::class);
         Route::resource('admin', AdminController::class);
+        Route::get('konfirmasi/{id}', [CalonSiswaController::class,'konfirmasi'])->name('formulir.konfirmasi');
     });
     Route::prefix('laporan')->group(function () {
         Route::get('biaya/pdf', [LaporanController::class,'biayaPdf']);

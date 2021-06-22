@@ -214,13 +214,23 @@
                         <div class="form-group row">
                             <label for=""></label>
                             <a href="{{route('formulir.index')}}" class="btn btn-primary">Back</a>
-                            <div class="col-sm-10">
+                            <div class="col-sm-1">
                                 <form action="{{ route('formulir.edit', $data->user_id) }}" method="get" enctype="multipart/form-data">
                                     <button class="btn btn-danger">
                                         Edit
                                     </button>
                                 </form>
                             </div>
+                            {{-- <div class="col-sm-5">
+                                <a class="btn btn-danger" value="<?php echo $data['user_id']; ?>" href="{{url('konfirmasi/'.$data['user_id']) }}"><span class="glyphicon glyphicon-trash"></span></a>
+                                <form action="{{ route('formulir.konfirmasi', $data->user_id) }}" method="get" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <button class="btn btn-danger" onclick="return confirm('Anda yakin data sudah benar?')">
+                                        Konfirmasi Data
+                                    </button>
+                                </form>
+                            </div> --}}
                         </div>
                 </div>
             </div>

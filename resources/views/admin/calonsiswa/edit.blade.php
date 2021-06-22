@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
    <div class="col-lg-12 mb-4">
-    <form method="post" action="{{ route('formulir.update', $data->id) }}" id="myForm" enctype="multipart/form-data">
+    <form method="post" action="{{ route('formulir.update', $data->user_id) }}" id="myForm" enctype="multipart/form-data">
        <!-- Approach -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -223,13 +223,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="user_id" class=" col-sm-2 col-form-label">Konfirmasi</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="text" name="konfirmasi" class="form-control" id="gaji_ayah" aria-describedby="gaji_ayah" placeholder="Inputkan 'sudah'" >
+                                </div>
+                            </div>
+                        </div>
                          <a href="{{route('formulir.index')}}" class="btn btn-primary">Back</a>
-                        <form action="{{ route('formulir.update', $data->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('formulir.update', $data->user_id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <button class="btn btn-success" onclick="return confirm('Anda yakin data sudah benar?')">Update
                             </button>
                         </form>
+
                 </div>
             </div>
 

@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
    <div class="col-lg-12 mb-4">
-    <form method="post" action="{{ route('formulir.store') }}" id="myForm">
+    <form method="post" action="{{ route('formulir.store') }}" id="myForm" enctype="multipart/form-data">
        <!-- Approach -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -25,6 +25,7 @@
                     <div class="form-group">
                         <label for="Nim">Nisn</label>
                         <br>
+                        <input type="text" name="user_id" class="form-control" id="user_id" aria-describedby="user_id" value="{{ Auth::user()->id }}" readonly hidden>
                         <input type="text" name="nisn" class="form-control" id="Nim" aria-describedby="Nim" value="{{ Auth::user()->nisn }}" readonly>
                     </div>
                     <div class="form-group">

@@ -6,7 +6,7 @@
        <!-- Approach -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Detail Data-Admin</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Detail Data-User</h6>
             </div>
             <div class="card-body">
                 <table class="table table-responsive">
@@ -35,11 +35,11 @@
                             <button type="button" class="btn btn-danger" onclick="history.back();">Back</button>
                         </th>
                         <th>
-                            <form action="{{ route('admin.edit', $data->id) }}" method="post" enctype="multipart/form-data">
+                            {{-- <form action="{{ route('admin.edit', $data->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <button class="btn btn-success">Edit</button>
-                            </form>
+                            </form> --}}
                         </th>
 
                     </tr>

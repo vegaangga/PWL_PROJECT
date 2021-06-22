@@ -48,7 +48,7 @@
                             <td>{{ $data->user->nisn}}</td>
                             <td>{{ $data->user->name }}</td>
                             <td>
-                                <a href="{{route('biaya.show', $data->user_id)}}">
+                                <a href="{{route('daftar-ulang.show', $data->user_id)}}">
                                     Lihat Struk
                                 </a>
                             </td>
@@ -61,14 +61,14 @@
                             </td>
                             <td>
                                 @if ($data->status == 'belum')
-                                <form action="{{ route('biaya.update', $data->user_id) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('daftar-ulang.update', $data->user_id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <button class="btn btn-info btn-sm" onclick="return confirm('Anda yakin struk sudah benar?')">Verifikasi
                                     </button>
                                 </form>
                                 @else
-                                <form action="{{ route('biaya.destroy', $data->user_id) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('daftar-ulang.destroy', $data->user_id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-info btn-sm" onclick="return confirm('Hapus Data?')">Hapus

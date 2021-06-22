@@ -6,7 +6,7 @@
        <!-- Approach -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Upload Struk Pembayaran </h6>
+                <h6 class="m-0 font-weight-bold text-primary">Upload Struk Pembayaran Daftar Ulang </h6>
             </div>
             <div class="card-body">
                 @if ($errors->any())
@@ -19,7 +19,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('biaya.store') }}" id="myForm" enctype="multipart/form-data">
+                <form method="post" action="{{ route('daftar-ulang.store') }}" id="myForm" enctype="multipart/form-data">
                     @csrf
                         <input type="text" name="user_id" class="form-control" id="user_id" aria-describedby="user_id" value="{{ Auth::user()->id }}" readonly>
                     <div class="form-group">

@@ -57,8 +57,8 @@
                       </td>
                       <td>{{$data->email}}</td>
                       <td>
-                        @if ($data->level == '1')
-                        <p>Siswa</p>
+                        @if ($data->level == '0')
+                        <p>Admin</p>
                         @endif
                       </td>
                       <td>
@@ -66,9 +66,9 @@
                             <a href="{{ route('user.show', $data->id) }}" class="btn" style="background-color:cyan">
                                 <i class="icon-copy fa fa-info-circle" aria-hidden="true"></i>
                             </a>
-                            <a href="{{route('user.edit', $data->id)}}" class="btn" data-bgcolor="#ffc107" data-color="#ffffff">
-                                <i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"></i>
-                            </a>
+                            {{-- <a href="{{route('user.edit', $data->id)}}" class="btn btn-primary" >
+                                <i class="icon-copy fa fa-pencil" aria-hidden="true"></i>
+                            </a> --}}
                         @csrf
                         @method('DELETE')
                         <button onclick="return confirm('Anda yakin ingin meghapus data ini ?')" class="btn btn-danger" >

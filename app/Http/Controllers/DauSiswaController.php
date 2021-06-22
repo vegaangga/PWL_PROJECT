@@ -23,10 +23,15 @@ class DauSiswaController extends Controller
     }
     public function index()
     {
-        if(Auth::user()->level == 'admin') {
+        if(Auth::user()->level == '0') {
             $ub = Dau::with('user')->get();
             $datas = Dau::all();
             return view('admin.daftar_ulang.index',['datas'=>$datas,'ub'=>$ub]);
+        }
+        if(Auth::user()->level == '1') {
+            $ub = Dau::with('user')->get();
+            $datas = Dau::all();
+            return view('siswa.daftar.dau.index',['datas'=>$datas,'ub'=>$ub]);
         }
     }
 
@@ -42,16 +47,17 @@ class DauSiswaController extends Controller
         $b = Dau::where('user_id', $a)->first();
         if($b == null){
             $user = Auth::user();
-            return view('siswa.daftar.biaya.create',['user' =>$user]);
+            return view('siswa.daftar.dau.create',['user' =>$user]);
         }
         Alert::info('Oopss..', 'Anda Sudah Mengisi Formulir');
         return redirect()->to('/home');
         }
 
         $datas = User::all()->where('level','1')
-        ->where('data_diri','1');
-
-        return view('admin.daftar_ulang.create',compact('datas'));
+        ->where('data_diri','1')
+        ->where('verif_daftar','1')
+        ->where('verif_dau',null);
+        return view('siswa.daftar.dau.create',compact('datas'));
     }
 
     /**
@@ -93,7 +99,7 @@ class DauSiswaController extends Controller
                  ]);
 
             alert()->success('Berhasil.','Struk Telah Ter-Upload');
-        return redirect()->route('siswa.daftar.biaya.index');
+        return redirect()->route('daftar-ulang.index');
         }
         //Admin
         $this->validate($request, [
@@ -134,7 +140,12 @@ class DauSiswaController extends Controller
      */
     public function show($id)
     {
-        //
+        if(Auth::user()->level == '1') {
+            $data = Dau::findOrFail($id);
+            return view('siswa.daftar.dau.show', compact('data'));
+        }
+        $data = Dau::findOrFail($id);
+        return view('admin.daftar_ulang.show', compact('data'));
     }
 
     /**
@@ -161,7 +172,10 @@ class DauSiswaController extends Controller
         $dau->update([
                 'status' => 'sudah'
                 ]);
-
+        $user = User::find($id);
+        $user->update([
+                        'verif_dau' => '1'
+        ]);
         alert()->success('Berhasil.','Data telah diubah!');
         return redirect()->route('daftar-ulang.index');
     }
@@ -174,8 +188,12 @@ class DauSiswaController extends Controller
      */
     public function destroy($id)
     {
+        $user = User::find($id);
+        $user->update([
+                'verif_dau' => null
+        ]);
         Dau::find($id)->delete();
         alert()->success('Berhasil.','Data telah dihapus!');
-        return redirect()->route('daftar_ulang.index');
+        return redirect()->route('daftar-ulang.index');
     }
 }

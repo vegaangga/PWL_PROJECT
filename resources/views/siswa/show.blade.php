@@ -15,7 +15,7 @@
               </div>
               @endif
               <p>{{ $message }}</p>
-                <table style="width:100%">
+                {{-- <table style="width:100%">
                     <tr>
                       <td rowspan="8" align="center" style="padding: right 0;">
                         <img src="{{asset('homepage/img/castle.jpg')}}" style="width: 200px;"></td>
@@ -54,7 +54,7 @@
                   </table>
             </div>
         </div>
-</div>
+</div> --}}
 
 </div>
 @endsection
