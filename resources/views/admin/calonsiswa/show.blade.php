@@ -215,7 +215,7 @@
                             <label for=""></label>
                             <a href="{{route('formulir.index')}}" class="btn btn-primary">Back</a>
                             <div class="col-sm-10">
-                                <form action="{{ route('formulir.edit', $data->id) }}" method="get" enctype="multipart/form-data">
+                                <form action="{{ route('formulir.edit', $data->user_id) }}" method="get" enctype="multipart/form-data">
                                     <button class="btn btn-danger">
                                         Edit
                                     </button>
