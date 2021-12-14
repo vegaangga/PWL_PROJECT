@@ -85,6 +85,9 @@ $c = Auth::user()->verif_dau;
                         @endif
                 </div>
             </div>
+            <div>
+                
+            </div>
         </div>
     </div>
 </div>

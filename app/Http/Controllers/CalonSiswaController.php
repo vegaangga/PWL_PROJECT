@@ -314,12 +314,13 @@ class CalonSiswaController extends Controller
             'gaji_ibu'=> $request->get('gaji_ibu'),
             'konfirmasi'=> $request->get('konfirmasi'),
         ]);
-        
+
         Siswa::find($id)->update([
             'konfirmasi' => 'sudah'
             ]);
 
         User::find($id)->update([
+            'verif_daftar' => '1',
                 'data_diri' => '1'
                 ]);
         alert()->success('Berhasil.','Data telah dirubah');

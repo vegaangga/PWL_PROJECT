@@ -174,7 +174,9 @@ class DauSiswaController extends Controller
                 ]);
         $user = User::find($id);
         $user->update([
-                        'verif_dau' => '1'
+            //Daftar
+            'verif_daftar' => '1',
+            'verif_dau' => '1'
         ]);
         alert()->success('Berhasil.','Data telah diubah!');
         return redirect()->route('daftar-ulang.index');

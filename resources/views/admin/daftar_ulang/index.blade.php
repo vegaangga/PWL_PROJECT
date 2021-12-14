@@ -21,8 +21,8 @@
                       Download Data
                   </a>
                   <div class="dropdown-menu">
-                      <a class="dropdown-item" href="{{url('laporan/dau/excel')}}">Excel</a>
-                      <a class="dropdown-item" href="{{url('laporan/dau/pdf')}}">PDF</a>
+                      <a class="dropdown-item" href="{{url('laporan/daftar-ulang/excel')}}">Excel</a>
+                      <a class="dropdown-item" href="{{url('laporan/daftar-ulang/pdf')}}">PDF</a>
                   </div>
               </div>
             </div>
